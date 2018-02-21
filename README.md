@@ -54,6 +54,10 @@ function(context, args)
 
 \#ms.scripts.user
 
+\#hs.chats.send({channel:"\<string\>", msg:"\<msg\>"})
+
+\#ms.chats.recent({channel:"0000_by_default", count:num_default_1, pretty:1}) -> pretty:0 returns an array, pretty:1 returns exactly what the server pipes you with chat messages
+
 \#db.f({example:"query"}) -> returns a cursor, use .array() to get the results
 
 \#db.u({doot:{$exists:true}}, {$set:{doot:"nope"}}) -> finds all documents which have a key doot, and sets their key doot to 'nope'
