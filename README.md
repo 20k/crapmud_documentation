@@ -42,6 +42,8 @@ function(context, args)
 
 ### Implemented scripts
 
+\#fs.scripts.all -> takes sec:num, and pretty:num, sec defaults to -1 (all) and pretty to 0
+
 \#hs.accts.balance
 
 \#fs.scripts.get_level
@@ -63,6 +65,16 @@ function(context, args)
 \#db.u({doot:{$exists:true}}, {$set:{doot:"nope"}}) -> finds all documents which have a key doot, and sets their key doot to 'nope'
 
 \#db.i({key:"something", key2:"somethingelse"}) -> inserts a new document
+
+### Other
+
+#up scriptname -> will upload a script to the server
+
+#private scriptname -> will make a script private
+
+#public scriptname -> will make a script public
+
+#remove scriptname -> will remove a script from the server
 
 ## GENERAL
 
