@@ -82,7 +82,7 @@ function(context, args)
 
 The console prompt you're given is a raw JS terminal, essentially of the form "return \<input\>". This means that if you enter 1+1, you get 2
 
-Scripts are run through eg #fs.script.name(), or #s.script.name() which maps to nullsec
+Scripts are run through eg #fs.script.name(), or #script.name() which maps to nullsec
 
 ### The Sandbox
 
