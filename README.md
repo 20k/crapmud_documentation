@@ -42,7 +42,7 @@ function(context, args)
 
 ### Implemented scripts
 
-\#fs.scripts.all -> takes sec:num, and pretty:num, sec defaults to -1 (all) and pretty to 0
+\#fs.scripts.all -> optionally takes sec:num, and pretty:num, sec defaults to -1 (all) and pretty to 0
 
 \#hs.accts.balance
 
@@ -55,6 +55,8 @@ function(context, args)
 \#fs.accts.xfer_gc_to_caller
 
 \#ms.scripts.user
+
+\#ns.users.me -> optionally takes {pretty:1}
 
 \#hs.chats.send({channel:"\<string\>", msg:"\<msg\>"})
 
