@@ -42,7 +42,11 @@ function(context, args)
 
 ### Implemented scripts
 
-\#fs.scripts.all -> optionally takes sec:num, and pretty:num, sec defaults to -1 (all) and pretty to 0
+\#ls.sys.xfer_upgrade_to({to:"username", idx:num})
+
+\#ms.sys.upgrades -> optionally takes array:num or full:1 to display detailed info, or takes load:idx or unload:idx to load and unload upgrades
+
+\#fs.scripts.all -> optionally takes sec:num, and array:num, sec defaults to -1 (all) and array to 0
 
 \#hs.accts.balance
 
@@ -56,11 +60,11 @@ function(context, args)
 
 \#ms.scripts.user
 
-\#ns.users.me -> optionally takes {pretty:1}
+\#ns.users.me -> optionally takes {array:1}
 
 \#hs.chats.send({channel:"\<string\>", msg:"\<msg\>"})
 
-\#ms.chats.recent({channel:"0000_by_default", count:num_default_1, pretty:1}) -> pretty:0 returns an array, pretty:1 returns exactly what the server pipes you with chat messages
+\#ms.chats.recent({channel:"0000_by_default", count:num_default_1, array:num}) -> array:1 returns an array, array:0 returns a formatted string
 
 \#db.f({example:"query"}) -> returns a cursor, use .array() or .first() to get the results
 
