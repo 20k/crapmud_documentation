@@ -22,7 +22,7 @@ The "client_command register client" command should be sent if no key.key file i
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
 
-Responses to "client_poll"s from the client are of the form "chat_api channel \<DATA\>". Data is formatted text with colour codes and should be displayed vanilla
+Responses to "client_poll"s from the client are of the form "chat_api channel_plus_data_length channel \<DATA\>". One poll response may give a string with multiple chat_api responses in, so this must be parsed appropriately
 
 The server sends no response for a "client_chat " command. Responses from the server should be stashed in a file somewhere, and reloaded next script run
 
