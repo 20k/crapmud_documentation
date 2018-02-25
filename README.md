@@ -42,29 +42,31 @@ function(context, args)
 
 ### Implemented scripts
 
-\#ls.sys.xfer_upgrade_to({to:"username", idx:num})
+\#hs.cash.balance
 
-\#ms.sys.upgrades -> optionally takes array:num or full:1 to display detailed info, or takes load:idx or unload:idx to load and unload upgrades
+\#ms.cash.xfer_to({to:"username", amount:number})
 
-\#fs.scripts.all -> optionally takes sec:num, and array:num, sec defaults to -1 (all) and array to 0
+\#fs.cash.xfer_to_caller({amount:number})
 
-\#hs.accts.balance
+\#fs.scripts.get_level({name:"user.scriptname"})
 
-\#fs.scripts.get_level
+\#fs.scripts.core
 
-\#ms.accts.xfer_gc_to
+\#ms.scripts.me
 
-\#fs.scripts.trust
+\#fs.scripts.public -> takes optional {array:1} or optional {sec:number}
 
-\#fs.accts.xfer_gc_to_caller
+\#hs.msgs.send({channel:"name", msg:"message"})
 
-\#ms.scripts.user
+\#ms.msgs.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}
 
-\#ns.users.me -> optionally takes {array:1}
+\#ns.users.me -> takes optional {array:1} argument
 
-\#hs.chats.send({channel:"\<string\>", msg:"\<msg\>"})
+\#ns.items.create({type:number}) -> type goes from 0 to 6, cheat to hack in items for testing
 
-\#ms.chats.recent({channel:"0000_by_default", count:num_default_1, array:num}) -> array:1 returns an array, array:0 returns a formatted string
+\#ls.items.xfer_to({to:"username", idx:item_index})
+
+\#ms.items.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
 
 \#db.f({example:"query"}) -> returns a cursor, use .array() or .first() to get the results
 
