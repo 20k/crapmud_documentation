@@ -84,6 +84,12 @@ function(context, args)
 
 #remove scriptname -> will remove a script from the server
 
+# -> lists all local scripts for that user
+
+#dir -> opens the script directory (shared between users)
+
+#edit scriptname -> creates or opens a script for editing
+
 ## GENERAL
 
 The console prompt you're given is a raw JS terminal, essentially of the form "return \<input\>". This means that if you enter 1+1, you get 2
