@@ -6,7 +6,7 @@ All requests are get requests
 
 ### Client -> Server
 
-Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.trust()"
+Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.core()"
 
 Calls which directly hook into the realtime chat system should be of the form "client_chat #hs.msgs.send({channel:"\<YOURCHAN\>", msg:"\<YOURMSG\>"})"
 
