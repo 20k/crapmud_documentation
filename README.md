@@ -8,7 +8,7 @@ All requests are get requests
 
 Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.trust()"
 
-Calls which directly hook into the realtime chat system should be of the form "client_chat #hs.chats.send({channel:"\<YOURCHAN\>", msg:"\<YOURMSG\>"})"
+Calls which directly hook into the realtime chat system should be of the form "client_chat #hs.msgs.send({channel:"\<YOURCHAN\>", msg:"\<YOURMSG\>"})"
 
 The "client_chat " prefix simply suppresses script output from the server, so other commands could be piped through here if desired
 
