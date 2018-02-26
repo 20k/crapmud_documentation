@@ -18,6 +18,8 @@ Polling is performed by the request "client_poll" - this is the main driver that
 
 The "client_command register client" command should be sent if no key.key file is present
 
+The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
+
 ### Server -> client
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
