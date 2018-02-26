@@ -2,7 +2,7 @@
 
 ## API
 
-All requests are get requests
+The official client uses GET requests, however any request will work as the server does not distinguish. Fill in the body for all below commands
 
 ### Client -> Server
 
