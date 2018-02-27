@@ -16,7 +16,7 @@ The #up command follows the format client_command "#up scriptname \<SCRIPT_DATA\
 
 Polling is performed by the request "client_poll" - this is the main driver that fetches chat so polls should be around ~1s in interval. This will probably be changed in the future because ddos'sing my own server is a poor move
 
-The "client_command register client" command should be sent if no key.key file is present. The response is "command ####register secret <128bytekey>"
+The "client_command register client" command should be sent if no key.key file is present. The response is "command ####register secret <128bytekey>". This 128 byte key should be saved and used to auth, it is not retrievable from the server
 
 The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
 
