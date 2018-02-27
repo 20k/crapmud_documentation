@@ -28,7 +28,11 @@ In the event that your http lib dislikes binary, you can use register client_hex
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
 
-Responses to "client_poll"s from the client are of the form "chat_api channel_plus_data_length channel \<DATA\>". One poll response may give a string with multiple chat_api responses in, so this must be parsed appropriately
+Responses to "client_poll"'s go as following: "chat_api sizeof_next |num_channels <chan0 chan1 chan2...> |<<<sizeof_next2  |channel raw_chat_string|>>>
+
+The sizeof_next items refer to the sizes encapsulated in |s in bytes. The first sizeof_next's size is |num_channels <channels>|, and the second is |channel raw_chat_string|
+
+The section in <<<>>> repeats fully. The section in <> is unbounded and may contain any number of entries (ie num channels in this case)
 
 The server sends no response for a "client_chat " command. Responses from the server should be stashed in a file somewhere, and reloaded next script run
 
