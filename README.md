@@ -20,6 +20,8 @@ The "client_command register client" command should be sent if no key.key file i
 
 The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
 
+In the event that your http lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian
+
 ### Server -> client
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
