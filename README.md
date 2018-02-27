@@ -2,7 +2,9 @@
 
 ## API
 
-The official client uses GET requests, however any request will work as the server does not distinguish. Fill in the body for all below commands. The port is 6750. There is a semi experimental websockets implementation available on 6760, use text mode
+The official client uses HTTP 1.1 GET requests, however any (1.1) request will work as the server does not distinguish, additionally your connection must be persistent to work correctly. Fill in the body for all below commands. The port is 6750
+
+There is a semi experimental websockets implementation available on 6760, use text mode. This will likely become the default in the future for custom clients as the HTTP implementation is slightly badly behaved
 
 ### Client -> Server
 
