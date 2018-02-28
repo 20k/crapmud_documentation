@@ -90,6 +90,8 @@ function(context, args)
 
 #up scriptname -> will upload a script to the server
 
+#dry scriptname -> will test run a script upload to the server but not commit the changes
+
 #private scriptname -> will make a script private
 
 #public scriptname -> will make a script public
