@@ -66,9 +66,11 @@ function(context, args)
 
 \#fs.scripts.public -> takes optional {array:1} or optional {sec:number}
 
-\#hs.msgs.send({channel:"name", msg:"message"})
+\#hs.msg.send({channel:"name", msg:"message"})
 
-\#ms.msgs.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}
+\#ms.msg.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}
+
+\#ms.msg.manage -> takes 1 of join:channel, create:channel, leave:channel
 
 \#ns.users.me -> takes optional {array:1} argument
 
