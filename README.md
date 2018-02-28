@@ -30,6 +30,8 @@ In the event that your http lib dislikes binary, you can use register client_hex
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
 
+The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth_client, auth_client_hex and a JS command (which is any text which is not one of the former)
+
 Responses to "client_poll"'s go as following: "chat_api sizeof_next |num_channels \<chan0 chan1 chan2...\> |<<<sizeof_next2  |channel raw_chat_string|>>>
 
 The sizeof_next items refer to the size of the elements surrounded by |s, in bytes. The first sizeof_next's is the size of |num_channels \<channels\> |, and the second is |channel raw_chat_string|
