@@ -4,6 +4,8 @@
 
 The official client uses HTTP 1.1 GET requests, however any (1.1) request will work as the server does not distinguish, additionally your connection must be persistent to work correctly. Fill in the body for all below commands. The port is 6750
 
+#### Experimental
+
 There is a semi experimental websockets implementation available on 6760, use text mode. This will likely become the default in the future for custom clients as the HTTP implementation is slightly badly behaved
 
 ### Client -> Server
@@ -34,7 +36,11 @@ The sizeof_next items refer to the size of the elements surrounded by |s, in byt
 
 The section in <<<>>> repeats fully. The section in \<\> is unbounded and may contain any number of entries (ie num channels in this case)
 
-The server sends no response for a "client_chat " command. Responses from the server should be stashed in a file somewhere, and reloaded next script run
+The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
+
+#### Experimental
+
+There is an experimental client_poll_json mode. Responses to client_poll_json are in the format "chat_api_json JSON". The JSON format is: {"channels":[channel_list], "data":[{"channel":channel, "text":raw_chat_string}]}, where array items may repeat indefinitely
 
 ## SCRIPTING
 
