@@ -112,6 +112,29 @@ function(context, args)
 
 \#edit scriptname -> creates or opens a script for editing
 
+### Calling Scripts from a String
+
+While \#ns.script.name() is the most straightforward way to call a hardcoded script, its also possible to call a script from a string or variable
+
+When you call \#ns.script.name(), it expands to ns_call("script.name")(). ns_call("script.name") returns a function object and does not call the function itself, so you may do var x = ns_call("script.name"); x()
+
+Currently, the fs/hs/ms/ls/ns_call functions only get injected into your code (for security reasons) when at least 1 \#fs/hs/ms/ls/ns.script.name() call is found
+
+For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are available in your script
+
+Example:
+
+function(c, a)
+
+{
+
+	#ms.invalid.script; //does not call the script, but is a valid statement to the parser
+	
+	//you may not use ls_call() here
+	
+	return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
+}
+
 ## GENERAL
 
 The console prompt you're given is a raw JS terminal, essentially of the form "return \<input\>". This means that if you enter 1+1, you get 2
