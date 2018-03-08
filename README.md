@@ -50,13 +50,10 @@ All scripts should go in the ./scripts folder. Scripts should be named "user.scr
 
 Scripts follow the format
 
-function(context, args)
-
-{
+	function(context, args)
+	{
 	
-	
-	
-}
+	}
 
 ### Implemented scripts
 
@@ -125,9 +122,7 @@ For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are av
 Example:
 
 	function(c, a)
-
 	{
-
 		#ms.invalid.script; //does not call the script, but is a valid statement to the parser
 	
 		//you may not use ls_call() here
