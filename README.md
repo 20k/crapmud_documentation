@@ -79,11 +79,18 @@ Scripts follow the format
 
 \#ns.users.me -> takes optional {array:1} argument
 
-\#ns.items.create({type:number}) -> type goes from 0 to 6, cheat to hack in items for testing
+\#ns.items.create({type:number}) -> type goes from 0 to 7, cheat to hack in items for testing. Type 1 is locks, use lock_type:name
 
 \#ls.items.xfer_to({to:"username", idx:item_index})
 
 \#ms.items.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
+
+\#ls.nodes.manage({load:index}) -> takes load/unload index of a lock_type
+
+\#ls.nodes.port() -> returns your port/loc
+
+
+### DB
 
 \#db.f({example:"query"}) -> returns a cursor, use .array() or .first() to get the results
 
