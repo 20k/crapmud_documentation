@@ -124,16 +124,16 @@ For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are av
 
 Example:
 
-function(c, a)
+	function(c, a)
 
-{
+	{
 
-	#ms.invalid.script; //does not call the script, but is a valid statement to the parser
+		#ms.invalid.script; //does not call the script, but is a valid statement to the parser
 	
-	//you may not use ls_call() here
+		//you may not use ls_call() here
 	
-	return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
-}
+		return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
+	}
 
 ## GENERAL
 
