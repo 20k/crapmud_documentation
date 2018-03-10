@@ -63,6 +63,8 @@ Scripts follow the format
 
 \#fs.cash.xfer_to_caller({amount:number})
 
+\#fs.cash.steal({from:"user", amount:number}) -> steals cash from a target with a breached breach node
+
 \#fs.scripts.get_level({name:"user.scriptname"})
 
 \#fs.scripts.core
