@@ -94,7 +94,7 @@ Scripts follow the format
 
 ### DB
 
-\#db.f({example:"query"}) -> returns a cursor, use .array() or .first() to get the results
+\#db.f({example:"query"}) -> returns a cursor, use .array() or .first() to get the results. Takes an optional second projection argument
 
 \#db.u({doot:{$exists:true}}, {$set:{doot:"nope"}}) -> finds all documents which have a key doot, and sets their key doot to 'nope'
 
