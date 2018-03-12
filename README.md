@@ -50,7 +50,7 @@ The server sends no response for a "client_chat " command if you use the websock
 
 #### Autocompletes
 
-The response for autocompletes is "server_scriptargs sizeof_next |script.name| <sizeof_next |key| sizeof_next |val|>". The section in <> repeats fully
+The response for autocompletes is "server_scriptargs sizeof_next |script.name| <sizeof_next |key| sizeof_next |val| >". The section in <> repeats fully
 
 In the event a script does not exist, or is a bad scriptname, the response is "server_scriptargs_invalid script.name". In the event that the request is unintelligable, the response is "server_scriptargs_invalid"
 
@@ -118,7 +118,7 @@ Scripts follow the format
 
 \#db.i({key:"something", key2:"somethingelse"}) -> inserts a new document
 
-### Other
+### Other (non scriptable)
 
 \#up scriptname -> will upload a script to the server
 
@@ -136,9 +136,11 @@ Scripts follow the format
 
 \#edit scriptname -> creates or opens a script for editing
 
-\#clear_autos -> clears autocompletes, not scriptable
+\#clear_autos -> clears autocompletes
 
 \#shutdown -> shuts down the client
+
+user \<username\> -> changes user, create automatically (will be changed in a future update)
 
 ### Calling Scripts from a String
 
