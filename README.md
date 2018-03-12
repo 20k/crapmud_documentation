@@ -109,6 +109,9 @@ Scripts follow the format
 
 \#ls.nodes.port() -> returns your port/loc
 
+### Autocompletes
+
+You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test:3:"bitconnect"). The parser isn't that fancy so you may end up with slightly incorrect behaviour if you do eg #autos(test:1, test2:"test1:")
 
 ### DB
 
