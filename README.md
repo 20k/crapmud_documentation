@@ -2,7 +2,7 @@
 
 ## API
 
-The official client uses websockets on 6760, the server will respond back to you in whichever mode you pick (text/binary), however be aware that endpoints that respond in binary will not work in text mode
+The official client uses websockets on 6760, the server will respond back to you in whichever mode you pick (text/binary), however be aware that commands that respond in binary will not work in text mode
 
 As the websocket mode is new, there may be bugs, please let me know if you find any
 
