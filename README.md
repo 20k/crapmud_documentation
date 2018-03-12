@@ -2,11 +2,13 @@
 
 ## API
 
-The official client uses HTTP 1.1 GET requests, however any (1.1) request will work as the server does not distinguish, additionally your connection must be persistent to work correctly. Fill in the body for all below commands. The port is 6750
+The official client uses websockets on 6760, the server will respond back to you in whichever mode you pick (text/binary), however be aware that endpoints that respond in binary will not work in text mode
 
-#### Experimental
+As the websocket mode is new, there may be bugs, please let me know if you find any
 
-There is a semi experimental websockets implementation available on 6760, use text mode. This will likely become the default in the future for custom clients as the HTTP implementation is slightly badly behaved
+#### Deprecated
+
+There is a deprecated HTTP implementation on 6750 that will be removed in a future update
 
 ### Client -> Server
 
@@ -26,6 +28,12 @@ The "client_command auth client <128bytekey>" command should be sent to auth the
 
 In the event that your http lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command ####register secret_hex <128bytekeyashex>"
 
+#### Autocompletes
+
+You may request an autocomplete from the server with the format "client_scriptargs script.name". Additionally, to request the experimental JSON mode use "client_scriptargs_json script.name"
+
+There is currently no way to batch autocompletes together, however with websockets being the default, this isn't so much of an issue
+
 ### Server -> client
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
@@ -40,9 +48,19 @@ The section in <<<>>> repeats fully. The section in \<\> is unbounded and may co
 
 The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
 
-#### Experimental
+#### Autocompletes
+
+The response for autocompletes is "server_scriptargs sizeof_next |script.name| <sizeof_next |key| sizeof_next |val|>". The section in <> repeats fully
+
+In the event a script does not exist, or is a bad scriptname, the response is "server_scriptargs_invalid script.name". In the event that the request is unintelligable, the response is "server_scriptargs_invalid"
+
+#### Experimental: client_poll_json
 
 There is an experimental client_poll_json mode. Responses to client_poll_json are in the format "chat_api_json JSON". The JSON format is: {"channels":[channel_list], "data":[{"channel":channel, "text":raw_chat_string}]}, where array items may repeat indefinitely
+
+#### Experimental: client_scriptargs_json:
+
+There is an experimental client_scriptargs_json mode. Responses to client_scriptargs_json are in the format "server_scriptargs_json JSON". The JSON format is: {script:"scriptname", keys:["key_1", "key_2"], vals:["val_1, val_2"]}, where array items may repeat indefinitely
 
 ## SCRIPTING
 
@@ -102,21 +120,25 @@ Scripts follow the format
 
 ### Other
 
-#up scriptname -> will upload a script to the server
+\#up scriptname -> will upload a script to the server
 
-#dry scriptname -> will test run a script upload to the server but not commit the changes
+\#dry scriptname -> will test run a script upload to the server but not commit the changes
 
-#private scriptname -> will make a script private
+\#private scriptname -> will make a script private
 
-#public scriptname -> will make a script public
+\#public scriptname -> will make a script public
 
-#remove scriptname -> will remove a script from the server
+\#remove scriptname -> will remove a script from the server
 
 \# -> lists all local scripts for that user
 
 \#dir -> opens the script directory (shared between users)
 
 \#edit scriptname -> creates or opens a script for editing
+
+\#clear_autos -> clears autocompletes, not scriptable
+
+\#shutdown -> shuts down the client
 
 ### Calling Scripts from a String
 
