@@ -113,7 +113,7 @@ Scripts follow the format
 
 ### Autocompletes
 
-You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test:3:"bitconnect"). The parser isn't that fancy so you may end up with slightly incorrect behaviour if you do eg #autos(test:1, test2:"test1:")
+You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3:"bitconnect"). The parser isn't that fancy so you may end up with slightly incorrect behaviour if you do eg #autos(test:1, test2:"test1:")
 
 ### DB
 
