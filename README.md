@@ -79,7 +79,7 @@ Scripts follow the format
 
 \#hs.cash.balance
 
-\#ms.cash.xfer_to({to:"username", amount:number})
+\#ms.cash.xfer_to({to:"user", amount:number})
 
 \#fs.cash.xfer_to_caller({amount:number})
 
@@ -87,9 +87,9 @@ Scripts follow the format
 
 \#fs.scripts.get_level({name:"user.scriptname"})
 
-\#fs.scripts.core
+\#fs.scripts.core -> takes optional {array:1} parameter
 
-\#ms.scripts.me
+\#ms.scripts.me -> takes optional {array:1} parameter
 
 \#fs.scripts.public -> takes optional {array:1} or optional {sec:number}
 
@@ -103,13 +103,13 @@ Scripts follow the format
 
 \#ns.items.create({type:number}) -> type goes from 0 to 7, cheat to hack in items for testing. Type 1 is locks, use lock_type:name
 
-\#ls.items.xfer_to({to:"username", idx:item_index})
+\#ls.items.xfer_to({to:"user", idx:item_index})
 
 \#ms.items.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
 
-\#ls.nodes.manage({load:index}) -> takes load/unload index of a lock_type
+\#ls.nodes.manage -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
 
-\#ls.nodes.port() -> returns your port/loc
+\#ls.nodes.port -> returns your port/loc
 
 ### Autocompletes
 
@@ -153,18 +153,15 @@ While \#ns.script.name() is the most straightforward way to call a hardcoded scr
 
 When you call \#ns.script.name(), it expands to ns_call("script.name")(). ns_call("script.name") returns a function object and does not call the function itself, so you may do var x = ns_call("script.name"); x()
 
-Currently, the fs/hs/ms/ls/ns_call functions only get injected into your code (for security reasons) when at least 1 \#fs/hs/ms/ls/ns.script.name() call is found
+Currently, the fs/hs/ms/ls/ns_call functions only get injected into your code (for security reasons) when at least 1 \#fs/hs/ms/ls/ns.script.name() call is found. Additionally, the parser checks for *_call directives, and will inject the correct functions on detecting eg hs_call
 
-For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are available in your script
+For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are available in your script. If you call ls_call, ls_call, ms_call, hs_call, and fs_call are available
 
 Example:
 
+    ///this script is highsec due to hs_call
 	function(c, a)
 	{
-		#ms.invalid.script; //does not call the script, but is a valid statement to the parser
-	
-		//you may not use ls_call() here
-	
 		return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
 	}
 
