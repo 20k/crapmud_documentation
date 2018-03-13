@@ -123,6 +123,8 @@ You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3
 
 \#db.i({key:"something", key2:"somethingelse"}) -> inserts a new document
 
+\#db.r({key:something}) -> deletes all documents that have a key:something
+
 ### Other (non scriptable)
 
 \#up scriptname -> will upload a script to the server
