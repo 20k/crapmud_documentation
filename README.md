@@ -54,7 +54,7 @@ The response for autocompletes is "server_scriptargs sizeof_next |script.name| <
 
 In the event a script does not exist, or is a bad scriptname, the response is "server_scriptargs_invalid script.name". In the event that the request is unintelligable, the response is "server_scriptargs_invalid"
 
-In the event you are being ratelimited, you will receive "server_scriptargs_ratelimit script.name", or "server_scriptargs_ratelimit_json JSON", where the JSON format is {script:"name"}
+In the event you are being ratelimited, you will receive "server_scriptargs_ratelimit script.name", or "server_scriptargs_ratelimit_json JSON", where the JSON format is {"script":"name"}
 
 #### Experimental: client_poll_json
 
