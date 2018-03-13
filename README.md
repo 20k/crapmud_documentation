@@ -149,6 +149,10 @@ You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3
 
 \#cls -> clears the terminal and chat
 
+\#clear_term -> clears the main terminal window
+
+\#clear_chat -> clears the main chat window
+
 user \<username\> -> changes user, create automatically (will be changed in a future update)
 
 ### Calling Scripts from a String
