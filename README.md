@@ -62,7 +62,7 @@ There is an experimental client_poll_json mode. Responses to client_poll_json ar
 
 #### Experimental: client_scriptargs_json:
 
-There is an experimental client_scriptargs_json mode. Responses to client_scriptargs_json are in the format "server_scriptargs_json JSON". The JSON format is: {script:"scriptname", keys:["key_1", "key_2"], vals:["val_1, val_2"]}, where array items may repeat indefinitely
+There is an experimental client_scriptargs_json mode. Responses to client_scriptargs_json are in the format "server_scriptargs_json JSON". The JSON format is: {"script":"scriptname", "keys":["key_1", "key_2"], "vals":["val_1, val_2"]}, where array items may repeat indefinitely
 
 ## SCRIPTING
 
