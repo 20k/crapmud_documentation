@@ -147,6 +147,8 @@ You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3
 
 \#shutdown -> shuts down the client
 
+\#cls -> clears the terminal and chat
+
 user \<username\> -> changes user, create automatically (will be changed in a future update)
 
 ### Calling Scripts from a String
