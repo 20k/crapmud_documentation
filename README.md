@@ -18,7 +18,7 @@ Calls which directly hook into the realtime chat system should be of the form "c
 
 The "client_chat " prefix simply suppresses script output from the server, so other commands could be piped through here if desired
 
-The #up command follows the format client_command "#up scriptname \<SCRIPT_DATA\>"
+The #up command follows the format client_command "#up scriptname \<SCRIPT_DATA\>". Additionally, you may use #up_es6 to request es6/typescript compilation, which is slower
 
 Polling is performed by the request "client_poll" - this is the main driver that fetches chat so polls should be around ~1s in interval. This will probably be changed in the future because ddos'sing my own server is a poor move
 
@@ -144,6 +144,12 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 \#dir -> opens the script directory (shared between users)
 
 \#edit scriptname -> creates or opens a script for editing
+
+\#edit_es6 scriptname -> creates or opens a script in es6/typescript mode. Will convert an es5 file to es6
+
+\#edit_es5 scriptname -> same as above, but will convert an es6 file to es5
+
+\#open scriptname -> opens a file for editing, but does not create
 
 \#clear_autos -> clears autocompletes
 
