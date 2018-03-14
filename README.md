@@ -143,7 +143,7 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 \#dir -> opens the script directory (shared between users)
 
-\#edit scriptname -> creates or opens a script for editing
+\#edit scriptname -> creates or opens a script for editing, defaults to es6
 
 \#edit_es6 scriptname -> creates or opens a script in es6/typescript mode. Will convert an es5 file to es6
 
