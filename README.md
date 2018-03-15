@@ -111,6 +111,8 @@ Scripts follow the format
 
 \#ls.nodes.port -> returns your port/loc
 
+\#ls.nodes.view_log({name:"user", NID:id}) -> takes optional array 1. Must have a clear breach path to the node in question
+
 ### Autocompletes
 
 You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3:"bitconnect");. The parser isn't that fancy so you may end up with slightly incorrect behaviour if you do eg #autos(test:1, test2:"test1:");
