@@ -165,6 +165,8 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 user \<username\> -> changes user, create automatically (will be changed in a future update)
 
+\#delete_user \<username\> -> deletes a user, does not confirm or warn
+
 ### Calling Scripts from a String
 
 While \#ns.script.name() is the most straightforward way to call a hardcoded script, its also possible to call a script from a string or variable
