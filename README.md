@@ -79,11 +79,11 @@ Scripts follow the format
 
 \#hs.cash.balance
 
-\#ms.cash.xfer_to({to:"user", amount:number})
+\#ms.cash.xfer_to({user:"user", amount:number})
 
 \#fs.cash.xfer_to_caller({amount:number})
 
-\#fs.cash.steal({from:"user", amount:number}) -> steals cash from a target with a breached breach node
+\#fs.cash.steal({user:"user", amount:number}) -> steals cash from a target with a breached breach node
 
 \#fs.scripts.get_level({name:"user.scriptname"})
 
@@ -101,17 +101,31 @@ Scripts follow the format
 
 \#ns.users.me -> takes optional {array:1} argument
 
-\#ns.items.create({type:number}) -> type goes from 0 to 7, cheat to hack in items for testing. Type 1 is locks, use lock_type:name
+\#fs.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs 10 cash which you can confirm with {confirm:true}
 
-\#ls.items.xfer_to({to:"user", idx:item_index})
+\#fs.item.expose({user:"target"}) -> lists a users current items if they are breached
 
-\#ms.items.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
+\#ls.item.xfer_to({user:"user", idx:item_index})
+
+\#ms.item.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
+
+\#ls.item.bundle_script({name:"scriptname", idx:0}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id
+
+\#ns.item.register_bundle({name:"arbitraryname", idx:0}) -> registers a bundle at idx:id to be run as host.arbitraryname()
 
 \#ls.nodes.manage -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
 
-\#ls.nodes.port -> returns your port/loc
+\#ls.nodes.view_log({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
 
-\#ls.nodes.view_log({name:"user", NID:id}) -> takes optional array 1. Must have a clear breach path to the node in question
+\#ls.net.view({user:"name"}) -> views the network connections associated with a user or npc
+
+\#ls.net.map({user:"name", n:7}) -> views the network connections associated with a user or npc in 2d, with a max depth of n
+
+\#ns.net.access({user:"name"}) -> access an NPC's command interface. Takes {add_user:"name"} or {remove_user:"name"} or {view_users:true}. Costs 200 cash to execute a command on an npc you have not added yourself to, in which case you must pass {confirm:true} to confirm payment
+
+\#fs.net.hack({user:"name", extra_args:"example"}) -> hacks a user at user:"name", passes args forwards
+
+\#ns.net.switch({user:"name"}) -> switches your terminal input to be run through this npc instead. Currently only works for npcs, and your main user that you are running on (from the user <username>) command
 
 ### Autocompletes
 
