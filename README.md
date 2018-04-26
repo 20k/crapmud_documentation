@@ -145,6 +145,12 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 \#db.r({key:something}) -> deletes all documents that have a key:something
 
+### Misc
+
+\#D("hello_there") -> overwrites your return value with any #D strings, which are appended together with newlines, works even if the script breaks except for timeouts but will overwrite errors. Only works for caller
+
+print("some_string") -> gets printed onto the terminal prior to any return values, works even if the script breaks except for timeouts, will not overwrite errors. Works for everyone
+
 ### Other (non scriptable)
 
 \#up scriptname -> will upload a script to the server
