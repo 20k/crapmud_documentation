@@ -111,7 +111,9 @@ Scripts follow the format
 
 \#ms.item.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
 
-\#ls.item.bundle_script({name:"scriptname", idx:0}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id
+\#ls.item.bundle_script({name:"scriptname", idx:0, tag:"shrt_tag"}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id. Tag modifies the item name, must be 8 characters or less
+
+\#ls.item.cull({idx:0}) -> unloads and deletes the item at idx:id
 
 \#ns.item.register_bundle({name:"arbitraryname", idx:0}) -> registers a bundle at idx:id to be run as host.arbitraryname()
 
