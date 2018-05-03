@@ -153,6 +153,8 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 print("some_string") -> gets printed onto the terminal prior to any return values, works even if the script breaks except for timeouts, will not overwrite errors. Works for everyone
 
+timeout_yield(); -> cooperatively terminates the script if past the execution timeout. Print and #D only give output if the script is cooperatively terminated, which includes calling any function whatsoever, including any script, *s_call, db functions, and misc functions. The only method by which to get non cooperative termination is to timeout in pure JS code after 6 seconds, instead of the usual 5s timeout cap
+
 ### Other (non scriptable)
 
 \#up scriptname -> will upload a script to the server
