@@ -87,6 +87,8 @@ Scripts follow the format
 
 \#hs.msg.send({channel:"name", msg:"message"})
 
+\#hs.msg.tell({user:"name", msg:"hello"}) -> sends a private message to a user
+
 \#ms.msg.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}
 
 \#ms.msg.manage -> takes 1 of join:channel, create:channel, leave:channel
