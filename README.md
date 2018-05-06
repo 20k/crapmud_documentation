@@ -38,7 +38,7 @@ There is currently no way to batch autocompletes together, however with websocke
 
 ### Server -> client
 
-Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
+Responses from the server to "client_command "s are of the form "command \<RESPONSE\>". Be aware that server responses generally may include colour codes EG `Dhello`, that you will be required to parse yourself
 
 The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth client, auth client_hex and a JS command (which is any text which is not one of the former)
 
