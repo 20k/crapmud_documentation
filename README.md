@@ -40,7 +40,7 @@ There is currently no way to batch autocompletes together, however with websocke
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>"
 
-The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth_client, auth_client_hex and a JS command (which is any text which is not one of the former)
+The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth client, auth client_hex and a JS command (which is any text which is not one of the former)
 
 Responses to client_poll_json are in the format "chat_api_json JSON". The JSON format is: {"channels":[channel_list], "data":[{"channel":channel, "text":raw_chat_string}], "tells":[{"user":user, "text":raw_chat_string}]}, where array items may repeat indefinitely
 
