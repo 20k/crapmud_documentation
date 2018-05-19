@@ -30,6 +30,10 @@ The "client_command auth client <128bytekey>" command should be sent to auth the
 
 In the event that your http lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command ####register secret_hex <128bytekeyashex>"
 
+The "client_terminate_scripts JSON" command can be sent to terminate a realtime script. The JSON format is {"id":id}. If the id is -1, it will terminate any realtime script
+
+The "client_script_keystrokes JSON" command can be sent to send keystrokes. The JSON format is {"id":id, "keys":"asdfqwer\n2134"}
+
 #### Autocompletes
 
 You may request an autocomplete from the server with the format "client_scriptargs_json script.name"
@@ -45,6 +49,8 @@ The full list of commands that will provoke a valid response are user <username>
 Responses to client_poll_json are in the format "chat_api_json JSON". The JSON format is: {"channels":[channel_list], "data":[{"channel":channel, "text":raw_chat_string}], "tells":[{"user":user, "text":raw_chat_string}]}, where array items may repeat indefinitely
 
 The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
+
+Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg}. The id is globally unique across every possible script invocation, and uniquely identifies one script run
 
 #### Autocompletes
 
@@ -136,6 +142,8 @@ on_draw, on_update(dt), and on_input(char_code)
 For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
 To exit realtime script mode, use `terminate_realtime();`, and to query realtime script mode use `is_realtime_script();`
+
+For an example script, look here https://pastebin.com/y5wrBnj8
 
 ### Autocompletes
 
