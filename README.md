@@ -123,6 +123,20 @@ Scripts follow the format
 
 \#ns.net.switch({user:"name"}) -> switches your terminal input to be run through this npc instead. Currently only works for npcs, and your main user that you are running on (from the user <username>) command
 
+### Realtime Scripting
+
+To set a script to be realtime, use
+
+`set_is_realtime_script();`
+
+The script then is set into realtime mode. There are 3 callbacks that you can return:
+
+on_draw, on_update(dt), and on_input(char_code)
+
+For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
+
+To exit realtime script mode, use `terminate_realtime();`, and to query realtime script mode use `is_realtime_script();`
+
 ### Autocompletes
 
 You may specify a scripts autocompletes like #autos(test:1, test2:"hello", test3:"bitconnect");. The parser isn't that fancy so you may end up with slightly incorrect behaviour if you do eg #autos(test:1, test2:"test1:");
