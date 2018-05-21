@@ -137,11 +137,13 @@ To set a script to be realtime, use
 
 The script then is set into realtime mode. There are 3 callbacks that you can return:
 
-on_draw, on_update(dt), and on_input(char_code)
+on_draw, on_update(dt), and on_input(char)
 
 For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
 To exit realtime script mode, use `terminate_realtime();`, and to query realtime script mode use `is_realtime_script();`
+
+`set_close_window_on_exit();` may be used to automatically close the client script window on terminating a realtime script
 
 For an example script, look here https://pastebin.com/y5wrBnj8
 
