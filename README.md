@@ -145,6 +145,10 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `set_close_window_on_exit();` may be used to automatically close the client script window on terminating a realtime script
 
+`set_start_window_size({width:50, height:25});` will set the starting width and height of the window in character sized units
+
+`is_key_down('a')` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list
+
 For an example script, look here https://pastebin.com/y5wrBnj8
 
 ### Autocompletes
