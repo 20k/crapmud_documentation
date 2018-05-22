@@ -137,7 +137,7 @@ To set a script to be realtime, use
 
 The script then is set into realtime mode. There are 3 callbacks that you can return:
 
-on_draw, on_update(dt), and on_input(char)
+on_draw, on_update(dt), on_input(char), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
 For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
@@ -147,7 +147,7 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `set_start_window_size({width:50, height:25});` will set the starting width and height of the window in character sized units
 
-`is_key_down('a')` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list
+`is_key_down(char)` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list
 
 For an example script, look here https://pastebin.com/y5wrBnj8
 
