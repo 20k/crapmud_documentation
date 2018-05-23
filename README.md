@@ -8,7 +8,7 @@ As the websocket mode is new, there may be bugs, please let me know if you find 
 
 #### Deprecated
 
-There is a deprecated HTTP implementation on 6750 that will be removed in a future update
+The HTTP endpoint has been removed
 
 client_poll and client_scriptargs are both deprecated and now undocumented. Use the JSON versions instead
 
@@ -32,7 +32,9 @@ In the event that your http lib dislikes binary, you can use register client_hex
 
 The "client_terminate_scripts JSON" command can be sent to terminate a realtime script. The JSON format is {"id":id}. If the id is -1, it will terminate any realtime script
 
-The "client_script_keystrokes JSON" command can be sent to send keystrokes. The JSON format is {"id":id, "keys":"asdfqwer\n2134"}
+The "client_script_keystrokes JSON" command can be sent to send keystrokes. The JSON format is {"id":id, "input_keys":["a", "enter", "space"], "released_keys":["up"], "pressed_keys":["lctrl"]}. Key format is love2d. Input keys are typed keys such as you might expect from a text editor, and pressed and released keys are the keys that have been pressed and released
+
+The "client_script_info JSON" command can be sent to send generic script information. The current JSON format is {"id":id, "width":width, "height":height}. Width and height are in character sized units
 
 #### Autocompletes
 
@@ -50,7 +52,7 @@ Responses to client_poll_json are in the format "chat_api_json JSON". The JSON f
 
 The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
 
-Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg}. The id is globally unique across every possible script invocation, and uniquely identifies one script run
+Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg, "width":width, "height":height}. The id is globally unique across every possible script invocation, and uniquely identifies one script run. Width and height currently will only be sent once on script invocation, with no msg parameter
 
 #### Autocompletes
 
@@ -135,7 +137,7 @@ To set a script to be realtime, use
 
 `set_is_realtime_script();`
 
-The script then is set into realtime mode. There are 3 callbacks that you can return:
+The script then is set into realtime mode. There are 4 callbacks that you can return:
 
 on_draw, on_update(dt), on_input(char), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
@@ -219,9 +221,7 @@ While \#ns.script.name() is the most straightforward way to call a hardcoded scr
 
 When you call \#ns.script.name(), it expands to ns_call("script.name")(). ns_call("script.name") returns a function object and does not call the function itself, so you may do var x = ns_call("script.name"); x()
 
-Currently, the fs/hs/ms/ls/ns_call functions only get injected into your code (for security reasons) when at least 1 \#fs/hs/ms/ls/ns.script.name() call is found. Additionally, the parser checks for *_call directives, and will inject the correct functions on detecting eg hs_call
-
-For example, if you call \#ms.script.name(), ms_call, hs_call and fs_call are available in your script. If you call ls_call, ls_call, ms_call, hs_call, and fs_call are available
+If your script is lowsec, all higher seclevel functions are available, eg. If you call ls_call, ls_call, ms_call, hs_call, and fs_call are available, but your script must be nullsec for ns_call to be available (so you cannot eval ns_call without at least one ns_call statement being made available to the parser as a regular statement)
 
 Example:
 
