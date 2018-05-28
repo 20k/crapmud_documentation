@@ -12,6 +12,8 @@ The HTTP endpoint has been removed
 
 client_poll and client_scriptargs are both deprecated and now undocumented. Use the JSON versions instead
 
+Warning: The server's auth response was changed recently to fix a security vulnerability, please check the new response format!
+
 ### Client -> Server
 
 Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.core()"
@@ -24,11 +26,11 @@ The #up command follows the format client_command "#up scriptname \<SCRIPT_DATA\
 
 Polling is performed by the request "client_poll_json" - this is the main driver that fetches chat so polls should be around ~1s in interval. This will probably be changed in the future because ddos'sing my own server is a poor move
 
-The "client_command register client" command should be sent if no key.key file is present. The response is "command ####register secret <128bytekey>". This 128 byte key should be saved and used to auth, it is not retrievable from the server
+The "client_command register client" command should be sent if no key.key file is present. The response is "command_auth secret <128bytekey>". This 128 byte key should be saved and used to auth, it is not retrievable from the server
 
 The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
 
-In the event that your http lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command ####register secret_hex <128bytekeyashex>"
+In the event that your http lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command_auth secret_hex <128bytekeyashex>"
 
 The "client_terminate_scripts JSON" command can be sent to terminate a realtime script. The JSON format is {"id":id}. If the id is -1, it will terminate any realtime script
 
