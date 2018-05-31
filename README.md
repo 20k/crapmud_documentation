@@ -54,7 +54,7 @@ Responses to client_poll_json are in the format "chat_api_json JSON". The JSON f
 
 The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
 
-Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg, "width":width, "height":height}. The id is globally unique across every possible script invocation, and uniquely identifies one script run. Width and height currently will only be sent once on script invocation, with no msg parameter
+Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg, "width":width, "height":height, "close":boolean}. The id is globally unique across every possible script invocation, and uniquely identifies one script run. Width and height currently will only be sent once on script invocation, with no msg parameter
 
 #### Autocompletes
 
