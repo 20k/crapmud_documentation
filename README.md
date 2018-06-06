@@ -123,7 +123,7 @@ Scripts follow the format
 
 \#ls.nodes.view_log({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
 
-\#ls.net.view({user:"name"}) -> views the network connections associated with a user or npc
+\#ls.net.view({user:"name", n:5}) -> views the network connections associated with a user or npc, gives position as well. In array:1 mode, returns an array where each member is an object with the properties name, x, y, z, links, stabilities
 
 \#ls.net.map({user:"name", n:7}) -> views the network connections associated with a user or npc in 2d, with a max depth of n
 
@@ -132,6 +132,14 @@ Scripts follow the format
 \#fs.net.hack({user:"name", extra_args:"example"}) -> hacks a user at user:"name", passes args forwards
 
 \#ns.net.switch({user:"name"}) -> switches your terminal input to be run through this npc instead. Currently only works for npcs, and your main user that you are running on (from the user <username>) command
+
+\#ns.net.move({user:"name", target:"destination"}) -> relinks a user or npc to the destination target. Must have a valid path
+
+\#ns.net.path({user:"name", target:"destination", min_stability:23}) -> returns the visible path from user to target which has an optional stability of minimum stability. The stability calculated is the most direct path, not the visible path. In array:1 mode returns {path:array, total_stability:num, avg_stability:num}
+
+\#ns.net.modify({user:"name", target:"destination", delta:5}) -> changes the path stability between user and target overall by delta, may be negative. Takes an optional type:"use" or type:"view" to choose what kind of path to increase stability along. If you pass create:true will instead create a new link with stability delta
+
+\#gal.* -> these functions are unfinished. #gal.list may be used to retrieve the list of sectors
 
 ### Realtime Scripting
 
