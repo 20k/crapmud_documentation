@@ -135,7 +135,7 @@ Scripts follow the format
 
 \#ns.net.move({user:"name", target:"destination"}) -> relinks a user or npc to the destination target. Must have a valid path
 
-\#ns.net.path({user:"name", target:"destination", min_stability:23}) -> returns the visible path from user to target which has an optional stability of minimum stability. The stability calculated is the most direct path, not the visible path. In array:1 mode returns {path:array, total_stability:num, avg_stability:num}
+\#ns.net.path({user:"name", target:"destination", min_stability:23}) -> returns the visible path from user to target which has an optional minimum link stability. The stability calculated is the most direct path, not the visible path. In array:1 mode, returns {path:array, total_stability:num, avg_stability:num}
 
 \#ns.net.modify({user:"name", target:"destination", delta:5}) -> changes the path stability between user and target overall by delta, may be negative. Takes an optional type:"use" or type:"view" to choose what kind of path to increase stability along. If you pass create:true will instead create a new link with stability delta
 
