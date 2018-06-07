@@ -119,6 +119,8 @@ Scripts follow the format
 
 \#ns.item.register_bundle({name:"arbitraryname", idx:0}) -> registers a bundle at idx:id to be run as host.arbitraryname()
 
+\#ls.item.configure_on_breach({idx:0, name:"i20k.script_name"}) -> idx refers to an on_breach item, and name can be one of the following: Blank, in which case it defaults to host.on_breach, a string with no host, in which case it defaults (dynamically and always) to host.string, and script.name, in which case that script name is always called
+
 \#ls.nodes.manage -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
 
 \#ls.nodes.view_log({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
