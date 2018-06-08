@@ -32,7 +32,7 @@ The "client_command register client" command should be sent if no key.key file i
 
 The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
 
-In the event that your websocket lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command_auth secret_hex <128bytekeyashex>"
+In the event that your websocket lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command_auth secret_hex <128bytekeyashex>". The binary data in key.key may have reversed endianness, so if you get no response from the server in hex mode, check that first
 
 The "client_terminate_scripts JSON" command can be sent to terminate a realtime script. The JSON format is {"id":id}. If the id is -1, it will terminate any realtime script
 
