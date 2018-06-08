@@ -6,6 +6,8 @@ The official client uses websockets on 6760, the server will respond back to you
 
 As the websocket mode is new, there may be bugs, please let me know if you find any
 
+The server will automatically disconnect you after 30s of inactivity. Any message sent or received to/from a client will reset the timer
+
 #### Deprecated
 
 The HTTP endpoint has been removed
