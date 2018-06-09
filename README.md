@@ -179,7 +179,7 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 \#db.u({doot:{$exists:true}}, {$set:{doot:"nope"}}) -> finds all documents which have a key doot, and sets their key doot to 'nope'
 
-\#db.i({key:"something", key2:"somethingelse"}) -> inserts a new document
+\#db.i({key:"something", key2:"somethingelse"}) -> inserts a new document, returns what was inserted
 
 \#db.r({key:something}) -> deletes all documents that have a key:something
 
