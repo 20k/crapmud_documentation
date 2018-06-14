@@ -2,9 +2,9 @@
 
 ## API
 
-The official client uses websockets on 6760, the server will respond back to you in whichever mode you pick (text/binary), however be aware that commands that respond in binary will not work in text mode
+The official client uses websockets on 6770 with TLS, the server will respond back to you in whichever mode you pick (text/binary), however be aware that commands that respond in binary will not work in text mode. If you wish not to use encryption, this is available on 6760 but is strongly not recommended
 
-As the websocket mode is new, there may be bugs, please let me know if you find any
+It is also strongly recommended that you enable compression, as realtime scripts generate a lot of highly compressible traffic
 
 The server will automatically disconnect you after 30s of inactivity. Any message sent or received to/from a client will reset the timer
 
