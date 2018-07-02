@@ -20,6 +20,8 @@ Warning: The server's auth response was changed recently to fix a security vulne
 
 Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.core()"
 
+Commands may be tagged as "client_command_tagged <TAG>", where the tag will be included in the response. You may not tag auth however
+
 Calls which directly hook into the realtime chat system should be of the form "client_chat #hs.msg.send({channel:"\<YOURCHAN\>", msg:"\<YOURMSG\>"})"
 
 The "client_chat " prefix simply suppresses script output from the server, so other commands could be piped through here if desired
@@ -49,6 +51,8 @@ There is currently no way to batch autocompletes together, however with websocke
 ### Server -> client
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>", except for auth client who's response is "command_auth secret <128bytekey>". Be aware that server responses generally may include colour codes EG \`Dhello\`, that you will be required to parse yourself
+
+Responses from the server to "client_command_tagged \<TAG\>"s are of the form "client_command_tagged \<TAG\> \<RESPONSE\>", except for auths which cannot use this system
 
 The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth client, auth client_hex and a JS command (which is any text which is not one of the former)
 
