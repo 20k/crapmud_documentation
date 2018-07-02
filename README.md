@@ -52,7 +52,7 @@ There is currently no way to batch autocompletes together, however with websocke
 
 Responses from the server to "client_command "s are of the form "command \<RESPONSE\>", except for auth client who's response is "command_auth secret <128bytekey>". Be aware that server responses generally may include colour codes EG \`Dhello\`, that you will be required to parse yourself
 
-Responses from the server to "client_command_tagged \<TAG\>"s are of the form "client_command_tagged \<TAG\> \<RESPONSE\>", except for auths which cannot use this system
+Responses from the server to "client_command_tagged \<TAG\>"s are of the form "command_tagged \<TAG\> \<RESPONSE\>", except for auths which cannot use this system
 
 The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth client, auth client_hex and a JS command (which is any text which is not one of the former)
 
