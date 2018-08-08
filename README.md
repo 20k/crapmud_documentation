@@ -133,21 +133,19 @@ Scripts follow the format
 
 \#ls.net.view({user:"name", n:5}) -> views the network connections associated with a user or npc, gives position as well. In array:1 mode, returns an array where each member is an object with the properties name, x, y, z, links, stabilities
 
-\#ls.net.map({user:"name", n:7}) -> views the network connections associated with a user or npc in 2d, with a max depth of n
-
-\#ns.net.access({user:"name"}) -> access an NPC's command interface. Takes {add_user:"name"} or {remove_user:"name"} or {view_users:true}. Costs 200 cash to execute a command on an npc you have not added yourself to, in which case you must pass {confirm:true} to confirm payment
-
 \#fs.net.hack({user:"name", extra_args:"example"}) -> hacks a user at user:"name", passes args forwards
 
 \#ns.net.switch({user:"name"}) -> switches your terminal input to be run through this npc instead. Currently only works for npcs, and your main user that you are running on (from the user <username>) command
 
-\#ns.net.move({user:"name", target:"destination"}) -> relinks a user or npc to the destination target. Must have a valid path
-
 \#ns.net.path({user:"name", target:"destination", min_stability:23}) -> returns the visible path from user to target which has an optional minimum link stability. The stability calculated is the most direct path, not the visible path. In array:1 mode, returns {path:array, total_stability:num, avg_stability:num}
 
-\#ns.net.modify({user:"name", target:"destination", delta:5}) -> changes the path stability between user and target overall by delta, may be negative. Takes an optional type:"use" or type:"view" to choose what kind of path to increase stability along. If you pass create:true will instead create a new link with stability delta
+\#ls.sys.map({n:-1, w:160, h:80, centre:false}) -> gives a map of every system in the game. The parameter n specifies how many hops out from your current system to show, and centre can be used to centre the camera. In array:1 mode returns an array of {name:"name", x:float, y:float, z:float, links:array}
 
-\#gal.* -> these functions are unfinished. #gal.list may be used to retrieve the list of sectors
+\#ls.sys.view({user:"name", w:80, h:40, scale:0.5, fit:false, n:-1}) -> generates a map of the local system. all parameters are optional. Without a user arg, it will return the overall system view, with a user arg it will display the currently viewable links from that user. Scale sets the overall zoom level, fit fits the view into the minimum space possible, and n specifies how many hops from the current user to show. In array:1 mode, returns an array of {name:"name", x:float, y:float, z:float, links:array, stabilities:array}
+
+\#ns.sys.move({to:"name", stop:false, queue:false, fraction:1, offset:0}) -> moves the current user to the target user. Stop may be used to stop movement. Queue sets whether or not to move immediately, or queue after the current set of moves are finished. Fraction sets the fraction of how much move, and offset sets an offset in units to stop before when moving
+
+\#ns.sys.access({user:"name"}) -> accesses the control panel for a user or npc. Can be used to travel between systems on a special npc. Also used to modify network links
 
 ### Realtime Scripting
 
