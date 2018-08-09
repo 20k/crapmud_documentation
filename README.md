@@ -62,6 +62,8 @@ The server sends no response for a "client_chat " command if you use the websock
 
 Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg, "width":width, "height":height, "close":boolean, script_name:string}. The id is globally unique across every possible script invocation, and uniquely identifies one script run. Width, height and script_name currently will only be sent once on script invocation, with no msg parameter
 
+In the event that no messages have been written from the server in a period of time (currently 2 seconds), the message "command_ping" will be sent as a keepalive
+
 #### Autocompletes
 
 Responses to client_scriptargs_json are in the format "server_scriptargs_json JSON". The JSON format is: {"script":"scriptname", "keys":["key_1", "key_2"], "vals":["val_1, val_2"]}, where array items may repeat indefinitely
