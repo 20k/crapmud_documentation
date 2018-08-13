@@ -169,6 +169,8 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `is_key_down(char)` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list
 
+`set_realtime_framerate_limit(30)` may be used to set a framerate limit. Valid ranges are 1-60fps
+
 For an example script, look here https://pastebin.com/E9FE09mP
 
 ### Autocompletes
