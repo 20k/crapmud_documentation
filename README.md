@@ -91,9 +91,9 @@ Scripts follow the format
 
 \#fs.cash.xfer_to_caller({amount:number})
 
-\#fs.cash.expose({user:"user"}) -> shows you the amount of cash a target has
+\#hs.cash.expose({user:"user"}) -> shows you the amount of cash a target has
 
-\#fs.cash.steal({user:"user", amount:number}) -> steals cash from a target with a breached breach node
+\#ms.cash.steal({user:"user", amount:number}) -> steals cash from a target with a breached breach node
 
 \#fs.scripts.get_level({name:"user.scriptname"})
 
@@ -113,9 +113,9 @@ Scripts follow the format
 
 \#ns.users.me -> takes optional {array:1} argument
 
-\#fs.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs 10 cash which you can confirm with {confirm:true}
+\#ls.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs cash which you can confirm with {confirm:true}
 
-\#fs.item.expose({user:"target"}) -> lists a users current items if they are breached
+\#hs.item.expose({user:"target"}) -> lists a users current items if they are breached
 
 \#ls.item.xfer_to({user:"user", idx:item_index})
 
