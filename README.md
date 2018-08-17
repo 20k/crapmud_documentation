@@ -157,7 +157,7 @@ To set a script to be realtime, use
 
 The script then is set into realtime mode. There are 4 callbacks that you can return:
 
-on_draw, on_update(dt), on_input(char), and on_resize(dim). Dim is an object with a width and height property, in character sized units
+on_draw, on_update(dt), on_input(char, is_repeated), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
 For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
