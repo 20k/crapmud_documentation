@@ -195,6 +195,8 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 print("some_string") -> gets printed onto the terminal prior to any return values, works even if the script breaks except for timeouts, will not overwrite errors. Works for everyone
 
+async_print("some_string") -> Dynamically and asynchronously sends a string to the client. Works correctly with realtime scripts unlike print(). Lightly ratelimited to prevent server abuse
+
 timeout_yield(); -> cooperatively terminates the script if past the execution timeout. Print and #D only give output if the script is cooperatively terminated, which includes calling any function whatsoever, including any script, *s_call, db functions, and misc functions. The only method by which to get non cooperative termination is to timeout in pure JS code after 6 seconds, instead of the usual 5s timeout cap
 
 ### Other (non scriptable)
@@ -243,11 +245,14 @@ When you call \#ns.script.name(), it expands to ns_call("script.name")(). ns_cal
 
 If your script is lowsec, all higher seclevel functions are available, eg. If you call ls_call, ls_call, ms_call, hs_call, and fs_call are available, but your script must be nullsec for ns_call to be available (so you cannot eval ns_call without at least one ns_call statement being made available to the parser as a regular statement)
 
+The *s_call series of functions take a second boolean argument to indicate if the script should be launched asynchronously. You may not get the return value of an asynchronous script launch, or pass it arguments
+
 Example:
 
     ///this script is highsec due to hs_call
 	function(c, a)
 	{
+        ns_call("i20k.some_nullsec", true)(); //launches some_nullsec asynchronously
 		return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
 	}
 
