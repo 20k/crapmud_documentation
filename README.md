@@ -159,7 +159,7 @@ The script then is set into realtime mode. There are 4 callbacks that you can re
 
 on_draw, on_update(dt), on_input(char, is_repeated), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
-For every 16ms you get 2ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
+For every 16ms you get 4ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
 To exit realtime script mode, use `terminate_realtime();`, and to query realtime script mode use `is_realtime_script();`
 
@@ -167,7 +167,7 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `set_start_window_size({width:50, height:25});` will set the starting width and height of the window in character sized units
 
-`is_key_down(char)` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list
+`is_key_down(char)` may be used to test if a key is down. Uses the love2d naming convention https://love2d.org/wiki/KeyConstant but bear in mind that not all keycodes are implemented yet, noteably any keycodes that would require shift to be pressed, numpad keys, F keys, and caps/scroll/numlock. F keys and *lock keys will never be supported, numpad is a maybe, and shift+1 keys are on the todo list. This also supports mouse clicks under the constants "lmouse", "mmouse" and "rmouse" 
 
 `set_realtime_framerate_limit(30)` may be used to set a framerate limit. Valid ranges are 1-60fps
 
