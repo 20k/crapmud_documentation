@@ -119,7 +119,11 @@ Scripts follow the format
 
 \#ls.item.xfer_to({user:"user", idx:item_index})
 
-\#ms.item.manage -> takes optional {array:1} or {full:1} (which displays detailed info), or takes optional {load:item_index} or {unload:item_index} 
+\#ms.item.list -> takes optional {array:1} or {full:1} (which displays detailed info)
+
+\#ms.item.load({idx:item_index})
+
+\#ms.item.unload({idx:item_index})
 
 \#ls.item.bundle_script({name:"scriptname", idx:0, tag:"shrt_tag"}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id. Tag modifies the item name, must be 8 characters or less
 
