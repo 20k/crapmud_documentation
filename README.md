@@ -91,7 +91,7 @@ Scripts follow the format
 
 \#fs.cash.xfer_to_caller({amount:number})
 
-\#hs.cash.expose({user:"user"}) -> shows you the amount of cash a target has
+\#hs.cash.expose({user:"user"}) -> shows you the amount of cash a target has, as well as how much you can steal
 
 \#ms.cash.steal({user:"user", amount:number}) -> steals cash from a target with a breached breach node
 
@@ -115,7 +115,7 @@ Scripts follow the format
 
 \#ls.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs cash which you can confirm with {confirm:true}
 
-\#hs.item.expose({user:"target"}) -> lists a users current items if they are breached
+\#hs.item.expose({user:"target"}) -> lists a users current items if they are breached, as well as how many items you can steal from them
 
 \#ls.item.xfer_to({user:"user", idx:item_index})
 
@@ -152,6 +152,8 @@ Scripts follow the format
 \#ns.sys.move({to:"name", stop:false, queue:false, fraction:1, offset:0}) -> moves the current user to the target user. Stop may be used to stop movement. Queue sets whether or not to move immediately, or queue after the current set of moves are finished. Fraction sets the fraction of how much move, and offset sets an offset in units to stop before when moving. In array:true mode returns {current:{x:float, y:float, z:float, timestamp_ms:time_in_ms}, queue:[queue_type]}. queue_type is an object that is one of two formats. 1 is {type:"move", x:float, y:float, z:float, timestamp_ms:timestamp, finish_in_ms:timestamp} and 2 is {type:"activate", system_to_arrive_at:"system_name"}
 
 \#ns.sys.access({user:"name"}) -> accesses the control panel for a user or npc. Can be used to travel between systems on a special npc. Also used to modify network links
+
+\#ms.sys.limits() -> shows you the limits in place due to seclevel limits, EG you may send less cash in fullsec than nullsec systems. Takes optional user:"name" or sys:"name" to view specific limits
 
 ### Realtime Scripting
 
