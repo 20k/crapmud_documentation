@@ -153,7 +153,7 @@ Scripts follow the format
 
 \#ns.sys.access({user:"name"}) -> accesses the control panel for a user or npc. Can be used to travel between systems on a special npc. Also used to modify network links
 
-\#ms.sys.limits() -> shows you the limits in place due to seclevel limits, EG you may send less cash in fullsec than nullsec systems. Takes optional user:"name" or sys:"name" to view specific limits
+\#ms.sys.limits() -> shows you the limits in place due to seclevels, EG you may send less cash to a fullsec system vs nullsec systems. Takes optional user:"name" or sys:"name" to view specific limits
 
 ### Realtime Scripting
 
