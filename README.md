@@ -262,6 +262,8 @@ Example:
 		return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
 	}
 
+Additionally, ofs_call, ohs_call, oms_call, ols_call, ons_call, os_call, as well as the prefixes #os., #ofs., #ohs., #oms., #ols., and #ons. are available. These call another script but with the caller set to the person hosting the script (ie you, if you are uploading it, or if you call #i20k.name() then that script using #os.script.name() would set the caller to i20k). Eg, #os.cash.xfer_to({user:context.caller, amount:1}) will send one cash from the scripts host, to the person calling the script. These are all fullsec statements, with the o*s variants being provided for convenience
+    
 ## GENERAL
 
 The console prompt you're given is a raw JS terminal, essentially of the form "return \<input\>". This means that if you enter 1+1, you get 2
