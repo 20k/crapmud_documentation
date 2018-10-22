@@ -195,6 +195,20 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 \#db.r({key:something}) -> deletes all documents that have a key:something
 
+There is additionally a db object under $db. This exposes the structure of the db directly. It is an array of objects (eg $db[0] and $db[1]), with $db alone being short circuited to $db[0] when performing lookups
+
+$db.some.thing.$fetch() -> gets the value of the key some.thing out of the db
+
+$db[0].some.thing.$fetch() -> exactly the same as above
+
+$db.some.thing.$delete() -> deletes the value of some.thing from the db
+
+$db.some.thing = "hello" -> sets some.thing to be "hello"
+
+$db[1] = {x:12, y:13} -> creates a new entry in db[1] and sets it to {x:12, y:13}
+
+This db object is generally intended for simple usage to treat the entire db as if it were a single object. Root db indices must be numbers (eg you cannot have $db["hello"])
+
 ### Misc
 
 \#D("hello_there") -> overwrites your return value with any #D strings, which are appended together with newlines, works even if the script breaks except for timeouts but will overwrite errors. Only works for caller
