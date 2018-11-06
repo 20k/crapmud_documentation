@@ -82,6 +82,8 @@ Scripts follow the format
 	{
 	
 	}
+    
+The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o", "o"]. Scripts in general support es6 syntax but not es6 library by default (the technical details are that its run through typescript and then babel). You may opt into es6+ features by using require("@babel/polyfill"), or require("p") for short. This has a non negligable overhead, but script globals are cached by seclevel and script host, so this penalty is only paid once
 
 ### Implemented scripts
 
@@ -110,6 +112,14 @@ Scripts follow the format
 \#ms.msg.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}. Additionally takes {tell:true} to retrieve tells instead
 
 \#ms.msg.manage -> takes 1 of join:channel, create:channel, leave:channel
+
+\#ms.channel.join({name:"some_name"}) -> joins a chat channel, optionally takes {password:"some_password"}. Name must be alphanumeric (including '_') and is limited to 16 characters
+
+\#ms.channel.leave({name:"some_name"}) -> leaves a chat channel
+
+\#ms.channel.create({name:"some_name"}) -> creates a chat channel, optionally takes {password:"some_password"}
+
+\#ms.channel.list() -> lists current chat channels, takes optional {array:1} to return an array
 
 \#ns.users.me -> takes optional {array:1} argument
 
