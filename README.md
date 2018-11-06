@@ -83,7 +83,7 @@ Scripts follow the format
 	
 	}
     
-The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o", "o"]. Scripts in general support es6 syntax but not es6 library by default (the technical details are that its run through typescript and then babel). You may opt into es6+ features by using require("@babel/polyfill"), or require("p") for short. This has a non negligable overhead, but script globals are cached by seclevel and script host, so this penalty is only paid once
+The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o", "o"]. Scripts in general support es6+ syntax but not es6+ library features by default (the technical details are that its run through typescript and then babel). You may opt into es6+ features by using require("@babel/polyfill"), or require("p") for short. This has a non negligable overhead to execute, but script globals are cached by seclevel and script host, so this penalty is only paid once per invocation in a script run, even if the script is called multiple times
 
 ### Implemented scripts
 
