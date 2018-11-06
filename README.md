@@ -87,7 +87,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 ### Implemented scripts
 
-\#hs.cash.balance
+\#hs.cash.balance()
 
 \#ms.cash.xfer_to({user:"user", amount:number})
 
@@ -99,9 +99,9 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#fs.scripts.get_level({name:"user.scriptname"})
 
-\#fs.scripts.core -> takes optional {array:1} parameter
+\#fs.scripts.core() -> takes optional {array:1} parameter
 
-\#ms.scripts.me -> takes optional {array:1} parameter
+\#ms.scripts.me() -> takes optional {array:1} parameter
 
 \#fs.scripts.public -> takes optional {array:1} or optional {sec:number}
 
@@ -111,8 +111,6 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ms.msg.recent({channel:"name"}) -> channel defaults to "0000", takes optional {count:number} or {array:1}. Additionally takes {tell:true} to retrieve tells instead
 
-\#ms.msg.manage -> takes 1 of join:channel, create:channel, leave:channel
-
 \#ms.channel.join({name:"some_name"}) -> joins a chat channel, optionally takes {password:"some_password"}. Name must be alphanumeric (including '_') and is limited to 16 characters
 
 \#ms.channel.leave({name:"some_name"}) -> leaves a chat channel
@@ -121,7 +119,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ms.channel.list() -> lists current chat channels, takes optional {array:1} to return an array
 
-\#ns.users.me -> takes optional {array:1} argument
+\#ns.users.me() -> takes optional {array:1} argument
 
 \#ls.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs cash which you can confirm with {confirm:true}
 
@@ -129,7 +127,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ls.item.xfer_to({user:"user", idx:item_index})
 
-\#ms.item.list -> takes optional {array:1} or {full:1} (which displays detailed info)
+\#ms.item.list() -> takes optional {array:1} or {full:1} (which displays detailed info)
 
 \#ms.item.load({idx:item_index})
 
@@ -143,7 +141,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ls.item.configure_on_breach({idx:0, name:"i20k.script_name"}) -> idx refers to an on_breach item, and name can be one of the following: Blank, in which case it defaults to host.on_breach, a string with no host, in which case it defaults (dynamically and always) to host.string, and script.name, in which case that script name is always called
 
-\#ls.nodes.manage -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
+\#ls.nodes.manage() -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
 
 \#ls.nodes.view_log({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
 
