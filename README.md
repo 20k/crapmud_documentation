@@ -121,17 +121,17 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ns.users.me() -> takes optional {array:1} argument
 
-\#ls.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs cash which you can confirm with {confirm:true}
+\#ls.item.steal({user:"target", idx:0}) -> steals the user's item at idx:id, costs cash which you can confirm with {confirm:true}. Also accepts an array of indices
 
 \#hs.item.expose({user:"target"}) -> lists a users current items if they are breached, as well as how many items you can steal from them
 
-\#ls.item.xfer_to({user:"user", idx:item_index})
+\#ls.item.xfer_to({user:"user", idx:item_index}) -> also accepts an array of indices
 
 \#ms.item.list() -> takes optional {array:1} or {full:1} (which displays detailed info)
 
-\#ms.item.load({idx:item_index})
+\#ms.item.load({idx:item_index}) -> also accepts an array of indices
 
-\#ms.item.unload({idx:item_index})
+\#ms.item.unload({idx:item_index}) -> also accepts an array of indices
 
 \#ls.item.bundle_script({name:"scriptname", idx:0, tag:"shrt_tag"}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id. Tag modifies the item name, must be 8 characters or less
 
