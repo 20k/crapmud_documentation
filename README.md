@@ -143,7 +143,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ls.nodes.manage() -> displays nodes and attached locks. Is no longer used for equipping locks, use #items.manage
 
-\#ls.nodes.view_log({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
+\#ls.log.expose({user:"user", NID:id}) -> takes optional {array:1}. Must have a clear breach path to the node in question
 
 \#ls.net.view({user:"name", n:5}) -> views the network connections associated with a user or npc, gives position as well. In array:1 mode, returns an array where each member is an object with the properties name, x, y, z, links, stabilities
 
