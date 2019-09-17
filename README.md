@@ -2,75 +2,139 @@
 
 ## API
 
-The official client uses websockets on 6770 with TLS, the server will respond back to you in whichever mode you pick (text/binary), however be aware that commands that respond in binary will not work in text mode. If you wish not to use encryption, this is available on 6760 but is strongly not recommended
+The official client uses websockets on 6770 with TLS, the server will respond back to you in binary mode
 
-It is also strongly recommended that you enable compression, as realtime scripts generate a lot of highly compressible traffic
+It is also strongly recommended that you enable compression, as realtime scripts generate a lot of highly compressible traffic. This will probably be enforced in the future to save server bandwidth
 
 The server will automatically disconnect you after 30s of inactivity. Any message sent or received to/from a client will reset the timer
 
-#### Deprecated
+#### General Networking
 
-The HTTP endpoint has been removed
+Every request is in json format, as described below. Every json object has a .type property, giving a string of possible types
 
-client_poll and client_scriptargs are both deprecated and now undocumented. Use the JSON versions instead
-
-Warning: The server's auth response was changed recently to fix a security vulnerability, please check the new response format!
+The requests and responses are listed by the .type property. Eg a request of type "autocomplete_request", with a data parameter of "i20k.mandelbrot" would result in a final json object of {type:"autocomplete_request", data:"i20k.mandelbrot"}. 
 
 ### Client -> Server
 
-Every client command should be preceded by "client_command ". A correct format for a request is "client_command #fs.scripts.core()"
+At least one auth method is required. To get a key token for 2. or 3., you must #dl_auth it. You must be authenticated to retrieve a key token, aka the only way to get one is to have authed successfully at least once through steam and downloaded it
 
-Commands may be tagged as "client_command_tagged <TAG>", where the tag will be included in the response. You may not tag auth however
+## Auth
 
-Calls which directly hook into the realtime chat system should be of the form "client_chat #hs.msg.send({channel:"\<YOURCHAN\>", msg:"\<YOURMSG\>"})"
+Type 1:
+.type -> steam_auth
+.data -> encrypted app token as hex (make sure you get the endianness right, you may need to swap)
 
-The "client_chat " prefix simply suppresses script output from the server, so other commands could be piped through here if desired
+Type 2:
+.type -> steam_auth
+.data -> encrypted app token as hex, with a hex auth token embedded in the request. Useful for tying a steam account to a specific auth token
 
-The #up command follows the format client_command "#up scriptname \<SCRIPT_DATA\>". Additionally, you may use #up_es6 to request es6/typescript compilation, which is slower
+Type 3:
+.type -> key_auth
+.data -> key token. You must use the token supplied previously by the server
 
-Polling is performed by the request "client_poll_json" - this is the main driver that fetches chat so polls should be around ~1s in interval. This will probably be changed in the future because ddos'sing my own server is a poor move
+## Other
 
-The "client_command register client" command should be sent if no key.key file is present. The response is "command_auth secret <128bytekey>". This 128 byte key should be saved and used to auth, it is not retrievable from the server
+Executes a generic user supplied command on the server, will get a response when the command completes of type server_msg
+.type -> generic_server_command
+.data -> "some string", eg "user i20k" or "#i20k.mandelbrot()"
+[optional] .tag -> the .tag property is returned as-is in the server response
 
-The "client_command auth client <128bytekey>" command should be sent to auth the client after a new connection is made to the server, or on reconnect
+Note: Scripts are uploaded with the format {type:"generic_server_command", data:"#up_es6 scriptname raw_script_data"}. You may replace #up_es6 with #up for es5 scripts for faster parsing
 
-In the event that your websocket lib dislikes binary, you can use register client_hex and auth client_hex to process hex instead. The format is little endian. If you ask for hex, the response will be "command_auth secret_hex <128bytekeyashex>". The binary data in key.key may have reversed endianness, so if you get no response from the server in hex mode, check that first
 
-The "client_terminate_scripts JSON" command can be sent to terminate a realtime script. The JSON format is {"id":id}. If the id is -1, it will terminate any realtime script
+Executes a client chat command. By default does not fetch a response from the server
+.type -> client_chat
+.data -> "some string", eg "#msg.send({channel:\"global\", msg:\"hello\"})"
+[optional] .respond -> set to 1 to get a server response of the type chat_api_response
 
-The "client_script_keystrokes JSON" command can be sent to send keystrokes. The JSON format is {"id":id, "input_keys":["a", "enter", "space"], "released_keys":["up"], "pressed_keys":["lctrl"]}. Key format is love2d. Input keys are typed keys such as you might expect from a text editor, and pressed and released keys are the keys that have been pressed and released
 
-The "client_script_info JSON" command can be sent to send generic script information. The current JSON format is {"id":id, "width":width, "height":height}. Width and height are in character sized units
+Requests the autocompletes for a script
+.type -> autocomplete_request
+.data -> "script.name", eg "i20k.mandelbrot"
 
-#### Autocompletes
 
-You may request an autocomplete from the server with the format "client_scriptargs_json script.name"
+Terminates one or all realtime scripts
+.type -> client_terminate_scripts
+.id -> either -1 to terminate all, or a numeric id to terminate a specific realtime script
 
-There is currently no way to batch autocompletes together, however with websockets being the default, this isn't so much of an issue
 
-### Server -> client
+Sends keyboard input information to realtime scripts
+.type -> send_keystrokes_to_script
+.id -> numeric id of a realtime script
+.input_keys -> keys that have been input, as for text entry. Array of strings, eg ["space", "a", "enter"]. Uses love2d convention for special characters (eg up/lshift), but not for regular characters (a space is "space"). Includes mouse buttons. Includes repeated characters
+.pressed_keys -> keys that have been pressed down, including mouse buttons, only needs to be updated when it happens. Uses love2d conventions
+.released_keys -> same as above but for keys that have just been released
 
-Responses from the server to "client_command "s are of the form "command \<RESPONSE\>", except for auth client who's response is "command_auth secret <128bytekey>". Be aware that server responses generally may include colour codes EG \`Dhello\`, that you will be required to parse yourself
+Sends mouse information to realtime scripts
+.type -> update_mouse_to_script
+.id -> numeric id of a realtime script
+.mouse_x -> mouse x position relative to the left hand side, in 'character sized' units. Eg if your font has a 30 pixel width, and your mouse is 60 pixels from the left of your content area, mouse_x is 2 characters from the left
+.mouse_y -> same as above, y's origin is from the top
+.mousewheel_x -> horizontal mousewheel
+.mousewheel_y -> vertical mousewheel
 
-Responses from the server to "client_command_tagged \<TAG\>"s are of the form "command_tagged \<TAG\> \<RESPONSE\>", except for auths which cannot use this system
 
-The full list of commands that will provoke a valid response are user <username>, #up, #dry, #remove, #public, #private, register client, auth client, auth client_hex and a JS command (which is any text which is not one of the former)
+Updates realtime script generic information
+.type -> send_script_info
+.id -> numeric id of a realtime script
+.width -> width in character sized units
+.height -> height in character sized units
 
-Responses to client_poll_json are in the format "chat_api_json JSON". The JSON format is: {"channels":[channel_list], "data":[{"channel":channel, "text":raw_chat_string}], "tells":[{"user":user, "text":raw_chat_string}], "user":current_user}, where array items may repeat indefinitely
 
-The server sends no response for a "client_chat " command if you use the websocket endpoint. Responses from the server should be stashed in a file somewhere, and reloaded next script run
+### Server -> Client
 
-Async updates are sent to the client in the format "command_realtime_json JSON". The JSON format is {"id":id, "msg":msg, "width":width, "height":height, "close":boolean, script_name:string}. The id is globally unique across every possible script invocation, and uniquely identifies one script run. Width, height and script_name currently will only be sent once on script invocation, with no msg parameter
+Generic server response
+.type -> server_msg
+.data -> response string, should be displayed to the user
+[optional] .tag -> tag value, as possibly sent in generic_server_command
+[optional] .pad -> if not present, or set to 0, add a newline to the end of the response. TODO: unsure if this is really still used or valid
 
-In the event that no messages have been written from the server in a period of time (currently 2 seconds), the message "command_ping" will be sent as a keepalive
+Realtime script info
+.type -> command_realtime
+.id -> numeric id of a realtime script
+[optional] .width -> width in character sized units. Eg if set to 3, and your font is 10 pixels wide, your window should be 30 pixels wide
+[optional] .height -> see .width
+[optional] .close -> realtime script window should be closed
+[optional] .msg -> window contents
 
-#### Autocompletes
+Chat api info
+.type -> chat_api
+.channels -> array of strings, joined channels
+.tells -> array of json objects, where the json objects each contain .user and .text
+.notifs -> server notifications, array of strings
+.data -> array of json objects, where the json objects each contain .channel and .text
+.root_user -> base executing user, useful if you've tunneled through an npc
+.user -> currently executing user, eg your main user or an npc
 
-Responses to client_scriptargs_json are in the format "server_scriptargs_json JSON". The JSON format is: {"script":"scriptname", "keys":["key_1", "key_2"], "vals":["val_1, val_2"]}, where array items may repeat indefinitely
+Script args response
+.type -> script_args
+.script -> script name, eg "i20k.mandelbrot"
+.keys -> array of script keys
+.vals -> array of script key values, this array is exactly the same length as .keys
 
-In the event a script does not exist, or is a bad scriptname, the response is "server_scriptargs_invalid_json JSON", where the JSON format is {"script":"scriptname"}. In the event that the request is unintelligable, the response is "server_scriptargs_invalid_json"
+Script args invalid response -> you requested an invalid script, or a bad format
+.type -> script_args_invalid
+.script -> script name, eg "i20k.mandelbrot"
 
-In the event you are being ratelimited, you will receive "server_scriptargs_ratelimit_json JSON", where the JSON format is {"script":"scriptname"}
+Script args ratelimit response -> ratelimit is currently 1/s
+.type -> script_args_ratelimit
+.script -> script name, eg "i20k.mandelbrot"
+
+Server ping -> ignore, or use to detect server death
+.type -> server_ping
+
+Script download
+.type -> script_down
+.name -> script name, eg "i20k.mandelbrot"
+.data -> script contents
+
+Chat api response. Indended to be a response to commands like /leave and /join, see client_chat with respond:1
+.type -> chat_api_response
+.data -> server message
+
+Key auth download, from #dl_auth while authenticated. Can be used as type 3 authentication
+.type -> auth
+.data -> hex key token
 
 ## SCRIPTING
 
@@ -294,6 +358,6 @@ Scripts are run through eg #fs.script.name(), or #script.name() which maps to nu
 
 ### The Sandbox
 
-Due to the way its implemented, there are no restrictions on the sandbox, you should not be able to edit the global object in a meaningful way
+Due to the way its implemented, there are no enforced restrictions in what you can do in the sandbox, you should not be able to edit the global object in a meaningful way. __proto__, getproto, setproto, and constructor have all been removed to prevent global object references leaking across scripts
 
 If you are able to mess with any of the global properties in a way that carries over into another script, let me know
