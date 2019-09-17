@@ -25,48 +25,50 @@ Type 1:
 .type -> steam_auth
 .data -> encrypted app token as hex (make sure you get the endianness right, you may need to swap)
 ```
-
+```
 Type 2:
 .type -> steam_auth
 .data -> encrypted app token as hex, with a hex auth token embedded in the request. Useful for tying a steam account to a specific auth token
-
+```
+```
 Type 3:
 .type -> key_auth
 .data -> key token. You must use the token supplied previously by the server
-
+```
 ## Other
-
+```
 Executes a generic user supplied command on the server, will get a response when the command completes of type server_msg
 .type -> generic_server_command
 .data -> "some string", eg "user i20k" or "#i20k.mandelbrot()"
 [optional] .tag -> the .tag property is returned as-is in the server response
 
 Note: Scripts are uploaded with the format {type:"generic_server_command", data:"#up_es6 scriptname raw_script_data"}. You may replace #up_es6 with #up for es5 scripts for faster parsing
-
-
+```
+```
 Executes a client chat command. By default does not fetch a response from the server
 .type -> client_chat
 .data -> "some string", eg "#msg.send({channel:\"global\", msg:\"hello\"})"
 [optional] .respond -> set to 1 to get a server response of the type chat_api_response
-
-
+```
+```
 Requests the autocompletes for a script
 .type -> autocomplete_request
 .data -> "script.name", eg "i20k.mandelbrot"
-
-
+```
+```
 Terminates one or all realtime scripts
 .type -> client_terminate_scripts
 .id -> either -1 to terminate all, or a numeric id to terminate a specific realtime script
-
-
+```
+```
 Sends keyboard input information to realtime scripts
 .type -> send_keystrokes_to_script
 .id -> numeric id of a realtime script
 .input_keys -> keys that have been input, as for text entry. Array of strings, eg ["space", "a", "enter"]. Uses love2d convention for special characters (eg up/lshift), but not for regular characters (a space is "space"). Includes mouse buttons. Includes repeated characters
 .pressed_keys -> keys that have been pressed down, including mouse buttons, only needs to be updated when it happens. Uses love2d conventions
 .released_keys -> same as above but for keys that have just been released
-
+```
+```
 Sends mouse information to realtime scripts
 .type -> update_mouse_to_script
 .id -> numeric id of a realtime script
@@ -74,23 +76,24 @@ Sends mouse information to realtime scripts
 .mouse_y -> same as above, y's origin is from the top
 .mousewheel_x -> horizontal mousewheel
 .mousewheel_y -> vertical mousewheel
-
-
+```
+```
 Updates realtime script generic information
 .type -> send_script_info
 .id -> numeric id of a realtime script
 .width -> width in character sized units
 .height -> height in character sized units
-
+```
 
 ### Server -> Client
-
+```
 Generic server response
 .type -> server_msg
 .data -> response string, should be displayed to the user
 [optional] .tag -> tag value, as possibly sent in generic_server_command
 [optional] .pad -> if not present, or set to 0, add a newline to the end of the response. TODO: unsure if this is really still used or valid
-
+```
+```
 Realtime script info
 .type -> command_realtime
 .id -> numeric id of a realtime script
@@ -98,7 +101,8 @@ Realtime script info
 [optional] .height -> see .width
 [optional] .close -> realtime script window should be closed
 [optional] .msg -> window contents
-
+```
+```
 Chat api info
 .type -> chat_api
 .channels -> array of strings, joined channels
@@ -107,37 +111,44 @@ Chat api info
 .data -> array of json objects, where the json objects each contain .channel and .text
 .root_user -> base executing user, useful if you've tunneled through an npc
 .user -> currently executing user, eg your main user or an npc
-
+```
+```
 Script args response
 .type -> script_args
 .script -> script name, eg "i20k.mandelbrot"
 .keys -> array of script keys
 .vals -> array of script key values, this array is exactly the same length as .keys
-
+```
+```
 Script args invalid response -> you requested an invalid script, or a bad format
 .type -> script_args_invalid
 .script -> script name, eg "i20k.mandelbrot"
-
+```
+```
 Script args ratelimit response -> ratelimit is currently 1/s
 .type -> script_args_ratelimit
 .script -> script name, eg "i20k.mandelbrot"
-
+```
+```
 Server ping -> ignore, or use to detect server death
 .type -> server_ping
-
+```
+```
 Script download
 .type -> script_down
 .name -> script name, eg "i20k.mandelbrot"
 .data -> script contents
-
+```
+```
 Chat api response. Indended to be a response to commands like /leave and /join, see client_chat with respond:1
 .type -> chat_api_response
 .data -> server message
-
+```
+```
 Key auth download, from #dl_auth while authenticated. Can be used as type 3 authentication
 .type -> auth
 .data -> hex key token
-
+```
 ## SCRIPTING
 
 All scripts should go in the ./scripts folder. Scripts should be named "user.scriptname.js", and can be uploaded with #up scriptname. EG if I am logged in as user "example", I make example.hello_world.js in ./scripts, and #up hello_world
