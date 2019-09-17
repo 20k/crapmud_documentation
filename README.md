@@ -20,9 +20,11 @@ At least one auth method is required. To get a key token for 2. or 3., you must 
 
 ## Auth
 
+```
 Type 1:
 .type -> steam_auth
 .data -> encrypted app token as hex (make sure you get the endianness right, you may need to swap)
+```
 
 Type 2:
 .type -> steam_auth
