@@ -356,11 +356,11 @@ The *s_call series of functions take a second boolean argument to indicate if th
 
 Example:
 
-    ///this script is highsec due to hs_call
+    ///this script is nullsec due to ns_call
 	function(c, a)
 	{
         ns_call("i20k.some_nullsec", true)(); //launches some_nullsec asynchronously
-		return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
+        return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
 	}
 
 Additionally, ofs_call, ohs_call, oms_call, ols_call, ons_call, os_call, as well as the prefixes #os., #ofs., #ohs., #oms., #ols., and #ons. are available. These call another script but with the caller set to the person hosting the script (ie you, if you are uploading it, or if you call #i20k.name() then that script using #os.script.name() would set the caller to i20k). Eg, #os.cash.xfer_to({user:context.caller, amount:1}) will send one cash from the scripts host, to the person calling the script. These are all fullsec statements, with the o*s variants being provided for convenience
