@@ -212,7 +212,7 @@ The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o"
 
 \#ls.item.bundle_script({name:"scriptname", idx:0, tag:"shrt_tag"}) -> inserts the source of a script (host.scriptname) into a bundle at idx:id. Tag modifies the item name, must be 8 characters or less
 
-\#ls.item.cull({idx:0}) -> unloads and deletes the item at idx:id
+\#ls.item.cull({idx:0}) -> unloads and deletes the item at idx:id. Also takes an array of indices
 
 \#ns.item.register_bundle({name:"arbitraryname", idx:0}) -> registers a bundle at idx:id to be run as host.arbitraryname()
 
