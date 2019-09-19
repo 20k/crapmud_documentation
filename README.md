@@ -262,6 +262,8 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `set_realtime_framerate_limit(30)` may be used to set a framerate limit. Valid ranges are 1-60fps
 
+`set_is_square_font(1)` may be used to change the font type from regular to square
+
 For an example script, look here https://pastebin.com/E9FE09mP
 
 ### Autocompletes
