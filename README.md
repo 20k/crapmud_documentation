@@ -2,7 +2,7 @@
 
 ## API
 
-The official client uses websockets on 6770 with TLS, the server will respond back to you in binary mode
+The official client uses websockets on 6770 with TLS to netcodegame.com - the server will respond back to you in binary mode
 
 It is also strongly recommended that you enable compression, as realtime scripts generate a lot of highly compressible traffic. This will probably be enforced in the future to save server bandwidth
 
