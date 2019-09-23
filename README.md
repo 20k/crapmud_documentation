@@ -282,7 +282,7 @@ Warning: You MUST terminate an #autos statement with a semicolon otherwise itll 
 
 \#db.r({key:something}) -> deletes all documents that have a key:something
 
-There is additionally a db object under $db. This exposes the structure of the db directly. It is an array of objects (eg $db[0] and $db[1]), with $db alone being short circuited to $db[0] when performing lookups
+There is additionally a db object under $db. This exposes the structure of the db directly. It is an array of objects (eg $db[0] and $db[1])
 
 $db.some.thing.$fetch() -> gets the value of the key some.thing out of the db
 
