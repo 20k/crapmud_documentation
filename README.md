@@ -92,6 +92,7 @@ Generic server response
 .data -> response string, should be displayed to the user
 [optional] .tag -> tag value, as possibly sent in generic_server_command
 [optional] .pad -> if not present, or set to 0, add a newline to the end of the response. TODO: unsure if this is really still used or valid
+[optional] .authenticated -> if present and set to 1, auth has been accepted. Only given once upon a successful auth
 ```
 ```
 Realtime script info
