@@ -64,7 +64,7 @@ Terminates one or all realtime scripts
 Sends keyboard input information to realtime scripts
 .type -> send_keystrokes_to_script
 .id -> numeric id of a realtime script
-.input_keys -> keys that have been input, as for text entry. Array of strings, eg ["space", "a", "enter"]. Uses love2d convention for special characters (eg up/lshift), but not for regular characters (a space is "space"). Includes mouse buttons. Includes repeated characters
+.input_keys -> keys that have been input, as for text entry, in utf8. Array of strings, eg ["a", ";", "/", " "]
 .pressed_keys -> keys that have been pressed down, including mouse buttons, only needs to be updated when it happens. Uses love2d conventions
 .released_keys -> same as above but for keys that have just been released
 ```
@@ -249,7 +249,7 @@ To set a script to be realtime, use
 
 The script then is set into realtime mode. There are 4 callbacks that you can return:
 
-on_draw, on_update(dt), on_input(char, is_repeated), and on_resize(dim). Dim is an object with a width and height property, in character sized units
+on_draw, on_update(dt), on_input(char, is_repeated), on_textinput(str), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
 For every 16ms you get 4ms of processing. You can terminate a realtime script with control-c, or by closing the associated window
 
