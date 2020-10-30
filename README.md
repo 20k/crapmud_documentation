@@ -2,7 +2,7 @@
 
 ## SCRIPTING
 
-All scripts should go in the ./scripts folder. Scripts should be named "user.scriptname.js", and can be uploaded with #up scriptname. EG if I am logged in as user "example", I make example.hello_world.js in ./scripts, and #up hello_world
+All scripts should go in the ./scripts/yourusername folder. Scripts should be named "scriptname.js", and can be uploaded with #up scriptname. EG if I am logged in as user "example", I make hello_world.js in ./scripts/example, and #up hello_world
 
 Scripts follow the format
 
@@ -11,7 +11,7 @@ Scripts follow the format
 	
 	}
     
-The CLI is es6+ by default. Eg if you try Array.from("foo") you'll get ["f", "o", "o"]. Scripts in general support es6+ syntax but not es6+ library features by default (the technical details are that its run through typescript and then babel). You may opt into es6+ features by using require("@babel/polyfill"), or require("p") for short. This has a non negligable overhead to execute, but script globals are cached by seclevel and script host, so this penalty is only paid once per invocation in a script run, even if the script is called multiple times
+All JS is es6+ by default, via quickjs
 
 ### Implemented scripts
 
@@ -97,7 +97,7 @@ To set a script to be realtime, use
 
 `set_is_realtime_script();`
 
-The script then is set into realtime mode. There are 4 callbacks that you can return:
+The script then is set into realtime mode. There are 5 callbacks that you can return:
 
 on_draw, on_update(dt), on_input(char, is_repeated), on_textinput(str), and on_resize(dim). Dim is an object with a width and height property, in character sized units
 
