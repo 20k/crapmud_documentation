@@ -203,69 +203,121 @@ The API is still a work in progress, flags are generally not currently support b
 Labels, ids, and strs, are all strings. Colours are values between 0 and 1 in the sRGB colour space
 
 `imgui.text(str)`
+
 `imgui.textcolored(r, g, b, a, str)` -> colours are in sRGB, between 0 and 1
+
 `imgui.textdisabled(str)` -> gray text
+
 `imgui.bullettext(str)` -> shortcut for bullet() + text()
+
 
 The following items return true when clicked or the value is changed. They also work with the isitem** functions
 
-imgui.button(label, width=0, height=0) -> simple button
-imgui.smallbutton(label) -> button with no framepadding
-imgui.invisiblebutton(id, width, height) -> an invisible button, useful for building custom widgets
-imgui.arrowbutton(id, direction) -> accepts directions 0, 1, 2, 3 for left, right, up, and down respectively
-imgui.checkbox(label, value_ref) -> checkbox
-imgui.radiobutton(label, is_active) -> radiobutton
-imgui.progressbar(fraction, width=0, height=0, overlay="")
-imgui.bullet() -> Draws a small circle, and keeps the cursor on the same line
+`imgui.button(label, width=0, height=0)` -> simple button
+
+`imgui.smallbutton(label)` -> button with no framepadding
+
+`imgui.invisiblebutton(id, width, height)` -> an invisible button, useful for building custom widgets
+
+`imgui.arrowbutton(id, direction)` -> accepts directions 0, 1, 2, 3 for left, right, up, and down respectively
+
+`imgui.checkbox(label, value_ref)` -> checkbox
+
+`imgui.radiobutton(label, is_active)` -> radiobutton
+
+`imgui.progressbar(fraction, width=0, height=0, overlay="")`
+
+`imgui.bullet()` -> Draws a small circle, and keeps the cursor on the same line
 
 The following items return true when the value is changed by the client. Dragfloats can be ctrl-clicked to turn them into an input box
 
-imgui.dragfloat(label, v_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragfloat2(label, v1_ref, v2_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragfloat3(label, v1_ref, v2_ref, v3_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragfloat4(label, v1_ref, v2_ref, v3_ref, v4_ref, v_speed=1, v_min=0, v_max=0)
 
-imgui.dragint(label, v_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragint2(label, v1_ref, v2_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragint3(label, v1_ref, v2_ref, v3_ref, v_speed=1, v_min=0, v_max=0)
-imgui.dragint4(label, v1_ref, v2_ref, v3_ref, v4_ref, v_speed=1, v_min=0, v_max=0)
+`imgui.dragfloat(label, v_ref, v_speed=1, v_min=0, v_max=0)`
 
-imgui.sliderfloat(label, v_ref, v_min, v_max)
-imgui.sliderfloat2(label, v1_ref, v2_ref, v_min, v_max)
-imgui.sliderfloat3(label, v1_ref, v2_ref, v3_ref, v_min, v_max)
-imgui.sliderfloat4(label, v1_ref, v2_ref, v3_ref, v4_re, v_min, v_max)
-imgui.sliderangle(label, vrad_ref, v_degrees_min=-360, v_degrees_max=360)
-imgui.sliderint(label, v_ref, v_min, v_max)
-imgui.sliderint2(label, v1_ref, v2_ref, v_min, v_max)
-imgui.sliderint3(label, v1_ref, v2_ref, v3_ref, v_min, v_max)
-imgui.sliderint4(label, v1_ref, v2_ref, v3_ref, v4_re, v_min, v_max)
+`imgui.dragfloat2(label, v1_ref, v2_ref, v_speed=1, v_min=0, v_max=0)`
 
-imgui.inputtext(label, v_text_ref)
-imgui.inputtextmultiline(label, v_text_ref)
-imgui.inputfloat(label, v_ref)
-imgui.inputfloat2(label, v1_ref, v2_ref)
-imgui.inputfloat3(label, v1_ref, v2_ref, v3_ref)
-imgui.inputfloat4(label, v1_ref, v2_ref, v3_ref, v4_ref)
-imgui.inputint(label, v_ref)
-imgui.inputint2(label, v1_ref, v2_ref)
-imgui.inputint3(label, v1_ref, v2_ref, v3_ref)
-imgui.inputint4(label, v1_ref, v2_ref, v3_ref, v4_ref)
-imgui.inputdouble(label, v1_ref)
+`imgui.dragfloat3(label, v1_ref, v2_ref, v3_ref, v_speed=1, v_min=0, v_max=0)`
 
-imgui.coloredit3(label, r_ref, g_ref, b_ref)
-imgui.coloredit4(label, r_ref, g_ref, b_ref, a_ref)
-imgui.colorpicker3(label, r_ref, g_ref, b_ref)
-imgui.colorpicker4(label, r_ref, g_ref, b_ref, a_ref)
+`imgui.dragfloat4(label, v1_ref, v2_ref, v3_ref, v4_ref, v_speed=1, v_min=0, v_max=0)`
 
-imgui.colorbutton(label, r_ref, g_ref, b_ref, a_ref, unused=0, width=0, height=0)
+
+
+`imgui.dragint(label, v_ref, v_speed=1, v_min=0, v_max=0)`
+
+`imgui.dragint2(label, v1_ref, v2_ref, v_speed=1, v_min=0, v_max=0)`
+
+`imgui.dragint3(label, v1_ref, v2_ref, v3_ref, v_speed=1, v_min=0, v_max=0)`
+
+`imgui.dragint4(label, v1_ref, v2_ref, v3_ref, v4_ref, v_speed=1, v_min=0, v_max=0)`
+
+
+
+`imgui.sliderfloat(label, v_ref, v_min, v_max)`
+
+`imgui.sliderfloat2(label, v1_ref, v2_ref, v_min, v_max)`
+
+`imgui.sliderfloat3(label, v1_ref, v2_ref, v3_ref, v_min, v_max)`
+
+`imgui.sliderfloat4(label, v1_ref, v2_ref, v3_ref, v4_re, v_min, v_max)`
+
+`imgui.sliderangle(label, vrad_ref, v_degrees_min=-360, v_degrees_max=360)`
+
+`imgui.sliderint(label, v_ref, v_min, v_max)`
+
+`imgui.sliderint2(label, v1_ref, v2_ref, v_min, v_max)`
+
+`imgui.sliderint3(label, v1_ref, v2_ref, v3_ref, v_min, v_max)`
+
+`imgui.sliderint4(label, v1_ref, v2_ref, v3_ref, v4_re, v_min, v_max)`
+
+
+
+`imgui.inputtext(label, v_text_ref)`
+
+`imgui.inputtextmultiline(label, v_text_ref)`
+
+`imgui.inputfloat(label, v_ref)`
+
+`imgui.inputfloat2(label, v1_ref, v2_ref)`
+
+`imgui.inputfloat3(label, v1_ref, v2_ref, v3_ref)`
+
+`imgui.inputfloat4(label, v1_ref, v2_ref, v3_ref, v4_ref)`
+
+`imgui.inputint(label, v_ref)`
+
+`imgui.inputint2(label, v1_ref, v2_ref)`
+
+`imgui.inputint3(label, v1_ref, v2_ref, v3_ref)`
+
+`imgui.inputint4(label, v1_ref, v2_ref, v3_ref, v4_ref)`
+
+`imgui.inputdouble(label, v1_ref)`
+
+
+`imgui.coloredit3(label, r_ref, g_ref, b_ref)`
+
+`imgui.coloredit4(label, r_ref, g_ref, b_ref, a_ref)`
+
+`imgui.colorpicker3(label, r_ref, g_ref, b_ref)`
+
+`imgui.colorpicker4(label, r_ref, g_ref, b_ref, a_ref)`
+
+
+`imgui.colorbutton(label, r_ref, g_ref, b_ref, a_ref, unused=0, width=0, height=0)`
 
 The following functions have miscellaneous return values
 
-imgui.treenode(label) -> begins a new tree node element. Must always call imgui.treepop(). Returns true when open. If false, all imgui calls are ignored until the next call to treepop()
-imgui.treepush(label) -> calls indent() + pushid() (pushid is unavailable in the scripting environment currently). Automatically called by treenode when true, if you use this you must call imgui.treepop(). No return value
-imgui.treepop() -> no return value. Must always be called after at treenode, or a treepush
-imgui.collapsingheader(label) -> returns true when the header is open. Does not indent, does not need treepop. 
-imgui.setnextitemopen(is_open) -> sets whether or not the next tree element is open
+
+`imgui.treenode(label)` -> begins a new tree node element. Must always call imgui.treepop(). Returns true when open. If false, all imgui calls are ignored until the next call to treepop()
+
+`imgui.treepush(label)` -> calls indent() + pushid() (pushid is unavailable in the scripting environment currently). Automatically called by treenode when true, if you use this you must call imgui.treepop(). No return value
+
+`imgui.treepop()` -> no return value. Must always be called after at treenode, or a treepush
+
+`imgui.collapsingheader(label)` -> returns true when the header is open. Does not indent, does not need treepop. 
+
+`imgui.setnextitemopen(is_open)` -> sets whether or not the next tree element is open
 
 The treenode API can be used like this:
 
@@ -288,50 +340,84 @@ imgui.treepop();
 
 These are functionally exactly the same. The only difference is that in the first situation, imgui.text is only sent when the server has acknowledged the treenode being opened. In the second situation, the text is always sent, resulting in effectively no latency at the expensive of more bandwidth usage
 
-imgui.selectable(label, is_selected, unused, width=0, height=0) -> returns true if clicked
-imgui.selectable(label, is_selected_ref, unused, width=0, height=0) -> returns true if clicked. This function is overloaded depending on whether or not the second parameter is a reference
 
-imgui.listbox(label, current_item_ref, items, height_in_items=-1) -> items is an array of strings. current_item_ref indexes this array. Returns true when current_item_ref changes
-imgui.plotlines(label, values, value_offset=0, overlay_string="", scale_min=FLT_MAX, scale_max=FLT_MAX, width=0, height=0) -> values is an array of numbers
-imgui.plothistogram(label, values, value_offset=0, overlay_string="", scale_min=FLT_MAX, scale_max=FLT_MAX, width=0, height=0) -> values is an array of numbers
+`imgui.selectable(label, is_selected, unused, width=0, height=0)` -> returns true if clicked
 
-imgui.pushstylecolor(idx, r, g, b, a) -> Unfortunately there are not numeric constants available for this, so you need to look up the numeric values in imgui. This will be fixed in the future
-imgui.popstylecolor(num=1)
+`imgui.selectable(label, is_selected_ref, unused, width=0, height=0)` -> returns true if clicked. This function is overloaded depending on whether or not the second parameter is a reference
 
-imgui.pushitemwidth(item_width) -> pushes item width
-imgui.popitemwidth()
-imgui.setnextitemwidth(item_width) -> sets the next item width
 
-imgui.separator() -> horizontal separator
-imgui.sameline(offset_from_start=0, spacing=-1) -> horizontal layout for widgets
-imgui.newline()
-imgui.spacing()
-imgui.dummy(width, height)
-imgui.indent(indent_w=0)
-imgui.unindent(indent_w)
-imgui.begingroup(id) -> treats a group of widgets or items as one megawidget, eg calling isitemhovered on a group will return if any item in the bounding box of the group is hovered 
-imgui.endgroup()
+`imgui.listbox(label, current_item_ref, items, height_in_items=-1)` -> items is an array of strings. current_item_ref indexes this array. Returns true when current_item_ref changes
+
+`imgui.plotlines(label, values, value_offset=0, overlay_string="", scale_min=FLT_MAX, scale_max=FLT_MAX, width=0, height=0)` -> values is an array of numbers
+
+`imgui.plothistogram(label, values, value_offset=0, overlay_string="", scale_min=FLT_MAX, scale_max=FLT_MAX, width=0, height=0)` -> values is an array of numbers
+
+
+`imgui.pushstylecolor(idx, r, g, b, a)` -> Unfortunately there are not numeric constants available for this, so you need to look up the numeric values in imgui. This will be fixed in the future
+
+`imgui.popstylecolor(num=1)`
+
+
+`imgui.pushitemwidth(item_width)` -> pushes item width
+
+`imgui.popitemwidth()`
+
+`imgui.setnextitemwidth(item_width)` -> sets the next item width
+
+
+`imgui.separator()` -> horizontal separator
+
+`imgui.sameline(offset_from_start=0, spacing=-1)` -> horizontal layout for widgets
+
+`imgui.newline()`
+
+`imgui.spacing()`
+
+`imgui.dummy(width, height)`
+
+`imgui.indent(indent_w=0)`
+
+`imgui.unindent(indent_w)`
+
+`imgui.begingroup(id)` -> treats a group of widgets or items as one megawidget, eg calling isitemhovered on a group will return if any item in the bounding box of the group is hovered 
+
+`imgui.endgroup()`
 
 All the following functions return booleans
-imgui.isitemhovered() -> is the last item hovered
-imgui.isitemactive() -> is the last item active
-imgui.isitemfocused() -> is the last item focused
-imgui.isitemclicked() -> was the last item just clicked
-imgui.isitemvisible() -> is the last item visible
-imgui.isitemedited() -> did the last item just modify its underlying value, or was it clicked
-imgui.isitemactived() -> was the last item just made active
-imgui.isitemdeactivated() -> was the last item just made inactive
-imgui.isitemdeactivatedafteredit() -> was the last item just made inactive, and made an underlying value change when it was active
-imgui.istoggledopen() -> was the last items open state toggled, for treenode()
-imgui.isanyitemovered() -> is any item in this realtime script hovered. Currently quite performance hungry
-imgui.isanyitemactive() -> is any item in this realtime script active. Currently quite performance hungry
-imgui.isanyitemfocused() -> is any item in this realtime script focused. Currently quite performance hungry
+
+`imgui.isitemhovered()` -> is the last item hovered
+
+`imgui.isitemactive()` -> is the last item active
+
+`imgui.isitemfocused()` -> is the last item focused
+
+`imgui.isitemclicked()` -> was the last item just clicked
+
+`imgui.isitemvisible()` -> is the last item visible
+
+`imgui.isitemedited()` -> did the last item just modify its underlying value, or was it clicked
+
+`imgui.isitemactived()` -> was the last item just made active
+
+`imgui.isitemdeactivated()` -> was the last item just made inactive
+
+`imgui.isitemdeactivatedafteredit()` -> was the last item just made inactive, and made an underlying value change when it was active
+
+`imgui.istoggledopen()` -> was the last items open state toggled, for treenode()
+
+`imgui.isanyitemovered()` -> is any item in this realtime script hovered. Currently quite performance hungry
+
+`imgui.isanyitemactive()` -> is any item in this realtime script active. Currently quite performance hungry
+
+`imgui.isanyitemfocused()` -> is any item in this realtime script focused. Currently quite performance hungry
 
 Drag and drop, source:
 
-imgui.begindragdropsource() -> Starts the last widget as a drag and drop source. If false, all imgui calls are ignored until the next call to imgui.enddragdropsource(). Returns true during a drag and drop operation
-imgui.setdragdroppayload(filter_unimplemented_string, data) -> must be called between begindragdropsource() and enddragdropsource(). Sets the current drag and drop element to data
-imgui.enddragdropsource() -> finishes a drag and drop source
+`imgui.begindragdropsource()` -> Starts the last widget as a drag and drop source. If false, all imgui calls are ignored until the next call to imgui.enddragdropsource(). Returns true during a drag and drop operation
+
+`imgui.setdragdroppayload(filter_unimplemented_string, data)` -> must be called between begindragdropsource() and enddragdropsource(). Sets the current drag and drop element to data
+
+`imgui.enddragdropsource()` -> finishes a drag and drop source
 
 The following two examples are equivalent
 
@@ -362,9 +448,11 @@ imgui.enddragdropsource();
 
 Drag and drop, destination
 
-imgui.begindragdroptarget() -> Starts the last widget as a drag and drop target. Returns true repeatedly when a drop operation is in progress. Must always call enddragdroptarget() afterwards
-imgui.acceptdragdroppayload() -> returns null when no item is dropped, or a string when an item is dropped. Must be called begin begindragdroptarget() and enddragdroptarget()
-imgui.enddragdroptarget() -> finishes a drag drop target
+`imgui.begindragdroptarget()` -> Starts the last widget as a drag and drop target. Returns true repeatedly when a drop operation is in progress. Must always call enddragdroptarget() afterwards
+
+`imgui.acceptdragdroppayload()` -> returns null when no item is dropped, or a string when an item is dropped. Must be called begin begindragdroptarget() and enddragdroptarget()
+
+`imgui.enddragdroptarget()` -> finishes a drag drop target
 
 The following two examples are equivalent functionally
 
@@ -401,8 +489,9 @@ imgui.enddragdroptarget();
 
 There is an extra network roundtrip and script run in example 1 and only minimal extra bandwidth in example 2, which makes it essentially an upgrade. Do not create other widgets between a begindragdroptarget() and an enddragdroptarget() pair
 
-imgui.ref(val) -> takes a copy of val, and produces an object {v:val}. Any function which needs to modify its argument uses this convention
-imgui.get(obj) -> takes an object, and returns the underlying value
+`imgui.ref(val)` -> takes a copy of val, and produces an object {v:val}. Any function which needs to modify its argument uses this convention
+
+`imgui.get(obj)` -> takes an object, and returns the underlying value
 
 ### Autocompletes
 
