@@ -202,10 +202,10 @@ The API is still a work in progress, flags are generally not currently support b
 
 Labels, ids, and strs, are all strings. Colours are values between 0 and 1 in the sRGB colour space
 
-imgui.text(str)
-imgui.textcolored(r, g, b, a, str) -> colours are in sRGB, between 0 and 1
-imgui.textdisabled(str) -> gray text
-imgui.bullettext(str) -> shortcut for bullet() + text()
+`imgui.text(str)`
+`imgui.textcolored(r, g, b, a, str)` -> colours are in sRGB, between 0 and 1
+`imgui.textdisabled(str)` -> gray text
+`imgui.bullettext(str)` -> shortcut for bullet() + text()
 
 The following items return true when clicked or the value is changed. They also work with the isitem** functions
 
