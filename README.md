@@ -117,6 +117,8 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 For an example script, look here https://pastebin.com/uHDfhp0k
 
+An example for many of the imgui functions can be found here: https://pastebin.com/8d3jsZCX
+
 ### Realtime Scripting: ImGui
 
 Net\_code\_ supports a js wrapper around ImGui, allowing you to build your own custom uis in realtime scripts that users can interact with on the client. There are two key deviations from the standard ImGui API here
@@ -159,7 +161,8 @@ if(ImGui::BeginDragDropSource())
 {
     ImGui::SetDragDropPayload("filt", "your_data_here");
     ImGui::EndDragDropSource();
-}```
+}
+```
 
 Net\_code\_ uses the convention:
 
@@ -272,14 +275,16 @@ if(imgui.treenode("Unique_id"))
     imgui.text("Hello");
 }
 
-imgui.treepop();```
+imgui.treepop();
+```
 
 or like this
 
 ```js
 imgui.treenode("Unique_id")
 imgui.text("Hello");
-imgui.treepop();```
+imgui.treepop();
+```
 
 These are functionally exactly the same. The only difference is that in the first situation, imgui.text is only sent when the server has acknowledged the treenode being opened. In the second situation, the text is always sent, resulting in effectively no latency at the expensive of more bandwidth usage
 
@@ -376,7 +381,8 @@ if(imgui.begindragdroptarget())
        async_print("DRAGDROP " + res);
 }
 
-imgui.enddragdroptarget();```
+imgui.enddragdroptarget();
+```
 
 Example 2.
 
@@ -390,7 +396,8 @@ var res = imgui.acceptdragdroppayload("none");
 if(res != null)
    async_print("DRAGDROP " + res);
 
-imgui.enddragdroptarget();```
+imgui.enddragdroptarget();
+```
 
 There is an extra network roundtrip and script run in example 1 and only minimal extra bandwidth in example 2, which makes it essentially an upgrade. Do not create other widgets between a begindragdroptarget() and an enddragdroptarget() pair
 
