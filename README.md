@@ -6,10 +6,10 @@ All scripts should go in the ./scripts/yourusername folder. Scripts should be na
 
 Scripts follow the format
 
-	function(context, args)
-	{
-	
-	}
+    function(context, args)
+    {
+    
+    }
     
 All JS is es6+ by default, via quickjs
 
@@ -115,7 +115,7 @@ To exit realtime script mode, use `terminate_realtime();`, and to query realtime
 
 `set_is_square_font(1)` may be used to change the font type from regular to square
 
-For an example script, look here https://pastebin.com/E9FE09mP
+For an example script, look here https://pastebin.com/uHDfhp0k
 
 ### Realtime Scripting: ImGui
 
@@ -132,15 +132,15 @@ var input_buffer = imgui.ref("");
 
 function on_draw()
 {
-	if(imgui.inputtext("Input Text", input_buffer))
-	{
-		///equivalent to
-		//var actual_string = input_buffer.v;
-		var actual_string = imgui.get(input_buffer);
-		
-		async_print("Client modified input buffer " + actual_string);
-		///modifying actual_string would not affect the contents of input_buffer
-	}
+    if(imgui.inputtext("Input Text", input_buffer))
+    {
+        ///equivalent to
+        //var actual_string = input_buffer.v;
+        var actual_string = imgui.get(input_buffer);
+        
+        async_print("Client modified input buffer " + actual_string);
+        ///modifying actual_string would not affect the contents of input_buffer
+    }
 }
 ```
 
@@ -149,7 +149,7 @@ Pt 2. Where raw ImGui uses the convention:
 ```c++
 if(ImGui::TreeNode("unique_id"))
 {
-	ImGui::Text("Hello!");
+    ImGui::Text("Hello!");
     ImGui::TreePop();
 }
 
@@ -157,7 +157,7 @@ if(ImGui::TreeNode("unique_id"))
 
 if(ImGui::BeginDragDropSource())
 {
-	ImGui::SetDragDropPayload("filt", "your_data_here");
+    ImGui::SetDragDropPayload("filt", "your_data_here");
     ImGui::EndDragDropSource();
 }```
 
@@ -166,14 +166,14 @@ Net\_code\_ uses the convention:
 ```js
 if(imgui.treenode("Unique_id"))
 {
-	imgui.text("Hello");
+    imgui.text("Hello");
 }
 
 imgui.treepop(); ///always called
 
 if(imgui.begindragdropsource())
 {
-	imgui.setdragdroppayload("filt", "your_data_here");
+    imgui.setdragdroppayload("filt", "your_data_here");
 }
 
 imgui.enddragdropsource(); ///always called
@@ -269,7 +269,7 @@ The treenode API can be used like this:
 ```js
 if(imgui.treenode("Unique_id"))
 {
-	imgui.text("Hello");
+    imgui.text("Hello");
 }
 
 imgui.treepop();```
@@ -337,8 +337,8 @@ imgui.button("Source");
 
 if(imgui.begindragdropsource())
 {
-	imgui.setdragdroppayload("none", "some_data");
-	imgui.text("Currently dragging and dropping something")
+    imgui.setdragdroppayload("none", "some_data");
+    imgui.text("Currently dragging and dropping something")
 }
 
 imgui.enddragdropsource();
@@ -370,10 +370,10 @@ imgui.button("Target");
 
 if(imgui.begindragdroptarget())
 {
-	var res = imgui.acceptdragdroppayload("none");
+    var res = imgui.acceptdragdroppayload("none");
 
-	if(res != null)
-	   async_print("DRAGDROP " + res);
+    if(res != null)
+       async_print("DRAGDROP " + res);
 }
 
 imgui.enddragdroptarget();```
@@ -486,11 +486,11 @@ The *s_call series of functions take a second boolean argument to indicate if th
 Example:
 
     ///this script is nullsec due to ns_call
-	function(c, a)
-	{
+    function(c, a)
+    {
         ns_call("i20k.some_nullsec", true)(); //launches some_nullsec asynchronously
         return hs_call("i20k.highsec")(); //dont forget the second set of ()s!
-	}
+    }
 
 Additionally, ofs_call, ohs_call, oms_call, ols_call, ons_call, os_call, as well as the prefixes #os., #ofs., #ohs., #oms., #ols., and #ons. are available. These call another script but with the caller set to the person hosting the script (ie you, if you are uploading it, or if you call #i20k.name() then that script using #os.script.name() would set the caller to i20k). Eg, #os.cash.xfer_to({user:context.caller, amount:1}) will send one cash from the scripts host, to the person calling the script. These are all fullsec statements, with the o*s variants being provided for convenience
     
